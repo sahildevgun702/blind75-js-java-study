@@ -39,9 +39,39 @@ public class Blind75Questions {
      * 
      * Time Complexity: O(n)
      * Space Complexity: O(n)
+     * 
+     * 🧠 THINKING LIKE A PROGRAMMER:
+     * 
+     * STEP 1: UNDERSTAND THE PROBLEM
+     * - What exactly are we looking for? (Two numbers that add up to target)
+     * - What should we return? (The indices, not the values!)
+     * - Any constraints? (Can't use same element twice)
+     * 
+     * STEP 2: THINK OF APPROACHES
+     * Before coding, consider these questions:
+     * 1. Brute Force: How would you check every possible pair?
+     * 2. Can you trade space for time? What if you stored something as you go?
+     * 3. For each number, what are you really looking for?
+     * 
+     * STEP 3: TRACE THROUGH EXAMPLES
+     * Given [2,7,11,15], target = 9:
+     * - At index 0 (value 2): What number do I need? How can I check if it exists?
+     * - At index 1 (value 7): What number do I need? Where is it?
+     * 
+     * 🎯 PROGRAMMING CHALLENGES (Do these BEFORE coding):
+     * 1. Write out the brute force approach in plain English
+     * 2. What data structure is good for "checking if something exists quickly"?
+     * 3. Draw the array and trace through your algorithm step by step
      */
     public int[] twoSum(int[] nums, int target) {
-        // Implement here
+        // 🚀 YOUR ALGORITHM HERE
+        // Step 1: What will you iterate through?
+        // Step 2: For each element, what are you looking for?
+        // Step 3: How will you store/lookup the complement?
+        // Step 4: What should you return when you find the pair?
+        // 
+        // Hint: HashMap<Integer, Integer> can store value -> index mapping
+        
         return new int[0];
     }
 

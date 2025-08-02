@@ -16,11 +16,18 @@ The **Blind 75** is a curated list of 75 LeetCode problems that covers all the i
 
 ```
 blind75-js-java-study/
-├── Blind75Questions.js          # All 75 questions with JS templates
-├── Blind75Questions.java        # All 75 questions with Java templates
-├── week-01-fundamentals/        # Fundamental programming exercises
-│   └── day-01-tip-calculator/   # Basic calculator implementation
-└── README.md                    # This file
+├── Blind75Questions.js             # Enhanced with beginner thinking prompts
+├── Blind75Questions.java           # Enhanced with beginner thinking prompts
+├── programming-fundamentals/       # Complete beginner's programming course
+│   ├── README.md                  # Learning to think like a programmer
+│   └── 01-problem-analysis/       # Problem breakdown fundamentals
+├── week-01-fundamentals/          # Progressive skill-building exercises
+│   ├── day-01-tip-calculator/     # Enhanced with thinking challenges
+│   ├── day-02-basic-algorithms/   # Algorithm building blocks
+│   └── day-03-pattern-recognition/ # Common programming patterns
+├── algorithmic-thinking-challenges.md  # Pattern recognition practice
+├── debugging-and-testing-guide.md     # Essential debugging skills
+└── README.md                          # This file
 ```
 
 ## 📚 Question Categories

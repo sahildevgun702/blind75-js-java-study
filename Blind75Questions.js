@@ -38,12 +38,40 @@
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  * 
+ * 🧠 THINKING LIKE A PROGRAMMER:
+ * 
+ * STEP 1: UNDERSTAND THE PROBLEM
+ * - What exactly are we looking for? (Two numbers that add up to target)
+ * - What should we return? (The indices, not the values!)
+ * - Any constraints? (Can't use same element twice)
+ * 
+ * STEP 2: THINK OF APPROACHES
+ * Before coding, consider these questions:
+ * 1. Brute Force: How would you check every possible pair?
+ * 2. Can you trade space for time? What if you stored something as you go?
+ * 3. For each number, what are you really looking for?
+ * 
+ * STEP 3: TRACE THROUGH EXAMPLES
+ * Given [2,7,11,15], target = 9:
+ * - At index 0 (value 2): What number do I need? How can I check if it exists?
+ * - At index 1 (value 7): What number do I need? Where is it?
+ * 
+ * 🎯 PROGRAMMING CHALLENGES (Do these BEFORE coding):
+ * 1. Write out the brute force approach in plain English
+ * 2. What data structure is good for "checking if something exists quickly"?
+ * 3. Draw the array and trace through your algorithm step by step
+ * 
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
 function twoSum(nums, target) {
-    // Implement here
+    // 🚀 YOUR ALGORITHM HERE
+    // Step 1: What will you iterate through?
+    // Step 2: For each element, what are you looking for?
+    // Step 3: How will you store/lookup the complement?
+    // Step 4: What should you return when you find the pair?
+    
     return [];
 }
 
@@ -57,15 +85,50 @@ function twoSum(nums, target) {
  * Example:
  * Input: prices = [7,1,5,3,6,4]
  * Output: 5
+ * Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
  * 
  * Time Complexity: O(n)
  * Space Complexity: O(1)
+ * 
+ * 🧠 THINKING LIKE A PROGRAMMER:
+ * 
+ * STEP 1: UNDERSTAND THE PROBLEM
+ * - You must buy BEFORE you sell (can't sell then buy)
+ * - You can only make ONE transaction (one buy + one sell)
+ * - Goal: Find maximum profit possible
+ * 
+ * STEP 2: PATTERN RECOGNITION
+ * Think about this problem step by step:
+ * - What's the best strategy for buying stocks in real life?
+ * - If you could see all future prices, when would you buy?
+ * - What information do you need to track as you go through each day?
+ * 
+ * STEP 3: TRACE THROUGH EXAMPLES
+ * prices = [7,1,5,3,6,4]
+ * Day 0 (price=7): Should I buy? What if I wait?
+ * Day 1 (price=1): Now should I buy? What's the best I could sell for later?
+ * Day 2 (price=5): If I bought at 1, what's my profit? Should I sell?
+ * Continue this thinking...
+ * 
+ * 🎯 PROGRAMMING CHALLENGES (Do these BEFORE coding):
+ * 1. What's the brute force approach? (Check every buy-sell pair)
+ * 2. Can you do it in one pass? What do you need to track?
+ * 3. What's the lowest price you've seen so far? Why is this important?
+ * 4. For each price, what's the maximum profit you can make if you sell today?
  * 
  * @param {number[]} prices
  * @return {number}
  */
 function maxProfit(prices) {
-    // Implement here
+    // 🚀 YOUR ALGORITHM HERE
+    // Think: What variables do you need to track?
+    // - The lowest price seen so far?
+    // - The maximum profit so far?
+    // 
+    // For each price:
+    // - Update your tracking variables
+    // - Calculate profit if selling today
+    
     return 0;
 }
 
@@ -82,11 +145,43 @@ function maxProfit(prices) {
  * Time Complexity: O(n)
  * Space Complexity: O(n)
  * 
+ * 🧠 THINKING LIKE A PROGRAMMER:
+ * 
+ * STEP 1: UNDERSTAND THE PROBLEM
+ * - We need to detect if ANY number appears MORE THAN ONCE
+ * - Return true if duplicate found, false if all unique
+ * - This is essentially asking: "Have I seen this number before?"
+ * 
+ * STEP 2: THINK OF APPROACHES
+ * Multiple ways to solve this:
+ * 1. Nested loops: For each element, check if it appears later in array
+ * 2. Sort first: After sorting, duplicates will be adjacent
+ * 3. Use extra space: Track what you've seen as you go
+ * 
+ * STEP 3: EFFICIENCY CONSIDERATIONS
+ * - What's the time complexity of each approach above?
+ * - Which approach gives us O(n) time?
+ * - What data structure is best for "checking if I've seen this before"?
+ * 
+ * 🎯 PROGRAMMING CHALLENGES (Do these BEFORE coding):
+ * 1. What data structure lets you check "membership" in O(1) time?
+ * 2. Trace through [1,2,3,1]: At what point do you know there's a duplicate?
+ * 3. What should you do the FIRST time you see a number?
+ * 4. What should you do if you see a number you've seen before?
+ * 
  * @param {number[]} nums
  * @return {boolean}
  */
 function containsDuplicate(nums) {
-    // Implement here
+    // 🚀 YOUR ALGORITHM HERE
+    // Think: What will you use to track seen numbers?
+    // Hint: What data structure gives O(1) lookup time?
+    // 
+    // For each number in nums:
+    // - Have I seen this number before?
+    // - If yes: return true (found duplicate!)
+    // - If no: remember that I've seen it
+    
     return false;
 }
 
