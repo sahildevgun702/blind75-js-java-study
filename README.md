@@ -152,22 +152,156 @@ java Blind75Questions
 # Uncomment the main method in the Java file
 ```
 
+<!-- PROGRESS-START -->
 ## 📊 Progress Tracking
 
-Track your progress by checking off completed problems:
+### Overall Progress
+- **JavaScript**: 0/75 problems (0%) ░░░░░░░░░░░░░░░░░░░░
+- **Java**: 0/75 problems (0%) ░░░░░░░░░░░░░░░░░░░░
 
-- [ ] **Arrays**: 0/12 completed
-- [ ] **Binary**: 0/5 completed
-- [ ] **Dynamic Programming**: 0/12 completed
-- [ ] **Graphs**: 0/7 completed
-- [ ] **Intervals**: 0/2 completed
-- [ ] **Linked Lists**: 0/6 completed
-- [ ] **Matrix**: 0/4 completed
-- [ ] **Strings**: 0/9 completed
-- [ ] **Trees**: 0/11 completed
-- [ ] **Heap**: 0/2 completed
-- [ ] **Trie**: 0/3 completed
-- [ ] **Design**: 0/2 completed
+### Category Progress (JS / Java)
+
+| Category | JS Progress | Java Progress | Problems |
+|----------|-------------|---------------|----------|
+| **Array** | ░░░░░░░░░░ 0/12 | ░░░░░░░░░░ 0/12 | 12 |
+| **Binary** | ░░░░░░░░░░ 0/5 | ░░░░░░░░░░ 0/5 | 5 |
+| **Dynamic Programming** | ░░░░░░░░░░ 0/12 | ░░░░░░░░░░ 0/12 | 12 |
+| **Graph** | ░░░░░░░░░░ 0/7 | ░░░░░░░░░░ 0/7 | 7 |
+| **Interval** | ░░░░░░░░░░ 0/2 | ░░░░░░░░░░ 0/2 | 2 |
+| **Linked List** | ░░░░░░░░░░ 0/6 | ░░░░░░░░░░ 0/6 | 6 |
+| **Matrix** | ░░░░░░░░░░ 0/4 | ░░░░░░░░░░ 0/4 | 4 |
+| **String** | ░░░░░░░░░░ 0/9 | ░░░░░░░░░░ 0/9 | 9 |
+| **Tree** | ░░░░░░░░░░ 0/11 | ░░░░░░░░░░ 0/11 | 11 |
+| **Heap** | ░░░░░░░░░░ 0/2 | ░░░░░░░░░░ 0/2 | 2 |
+| **Trie** | ░░░░░░░░░░ 0/3 | ░░░░░░░░░░ 0/3 | 3 |
+| **Design** | ░░░░░░░░░░ 0/2 | ░░░░░░░░░░ 0/2 | 2 |
+
+### Detailed Progress
+
+#### Array (12 problems)
+
+- **Two Sum** 🟢 | JS: ❌ | Java: ❌
+- **Best Time to Buy and Sell Stock** 🟢 | JS: ❌ | Java: ❌
+- **Contains Duplicate** 🟢 | JS: ❌ | Java: ❌
+- **Product of Array Except Self** 🟡 | JS: ❌ | Java: ❌
+- **Maximum Subarray** 🟢 | JS: ❌ | Java: ❌
+- **Maximum Product Subarray** 🟡 | JS: ❌ | Java: ❌
+- **Find Minimum in Rotated Sorted Array** 🟡 | JS: ❌ | Java: ❌
+- **Search in Rotated Sorted Array** 🟡 | JS: ❌ | Java: ❌
+- **3Sum** 🟡 | JS: ❌ | Java: ❌
+- **Container With Most Water** 🟡 | JS: ❌ | Java: ❌
+
+#### Binary (5 problems)
+
+- **Sum of Two Integers** 🟡 | JS: ❌ | Java: ❌
+- **Number of 1 Bits** 🟢 | JS: ❌ | Java: ❌
+- **Counting Bits** 🟢 | JS: ❌ | Java: ❌
+- **Missing Number** 🟢 | JS: ❌ | Java: ❌
+- **Reverse Bits** 🟢 | JS: ❌ | Java: ❌
+
+#### Dynamic Programming (12 problems)
+
+- **Climbing Stairs** 🟢 | JS: ❌ | Java: ❌
+- **Coin Change** 🟡 | JS: ❌ | Java: ❌
+- **Longest Increasing Subsequence** 🟡 | JS: ❌ | Java: ❌
+- **Longest Common Subsequence** 🟡 | JS: ❌ | Java: ❌
+- **Word Break Problem** 🟡 | JS: ❌ | Java: ❌
+- **Combination Sum** 🟡 | JS: ❌ | Java: ❌
+- **House Robber** 🟡 | JS: ❌ | Java: ❌
+- **House Robber II** 🟡 | JS: ❌ | Java: ❌
+- **Decode Ways** 🟡 | JS: ❌ | Java: ❌
+- **Unique Paths** 🟡 | JS: ❌ | Java: ❌
+- **Jump Game** 🟡 | JS: ❌ | Java: ❌
+
+#### Graph (7 problems)
+
+- **Clone Graph** 🟡 | JS: ❌ | Java: ❌
+- **Course Schedule** 🟡 | JS: ❌ | Java: ❌
+- **Pacific Atlantic Water Flow** 🟡 | JS: ❌ | Java: ❌
+- **Number of Islands** 🟡 | JS: ❌ | Java: ❌
+- **Longest Consecutive Sequence** 🟡 | JS: ❌ | Java: ❌
+- **Alien Dictionary** 🔴 | JS: ❌ | Java: ❌
+- **Graph Valid Tree** 🟡 | JS: ❌ | Java: ❌
+
+#### Interval (2 problems)
+
+- **Insert Interval** 🟡 | JS: ❌ | Java: ❌
+- **Merge Intervals** 🟡 | JS: ❌ | Java: ❌
+
+#### Linked List (6 problems)
+
+- **Reverse Linked List** 🟢 | JS: ❌ | Java: ❌
+- **Detect Cycle in Linked List** 🟢 | JS: ❌ | Java: ❌
+- **Merge Two Sorted Lists** 🟢 | JS: ❌ | Java: ❌
+- **Merge k Sorted Lists** 🔴 | JS: ❌ | Java: ❌
+- **Remove Nth Node From End of List** 🟡 | JS: ❌ | Java: ❌
+- **Reorder List** 🟡 | JS: ❌ | Java: ❌
+
+#### Matrix (4 problems)
+
+- **Set Matrix Zeroes** 🟡 | JS: ❌ | Java: ❌
+- **Spiral Matrix** 🟡 | JS: ❌ | Java: ❌
+- **Rotate Image** 🟡 | JS: ❌ | Java: ❌
+- **Word Search** 🟡 | JS: ❌ | Java: ❌
+
+#### String (9 problems)
+
+- **Longest Substring Without Repeating Characters** 🟡 | JS: ❌ | Java: ❌
+- **Longest Repeating Character Replacement** 🟡 | JS: ❌ | Java: ❌
+- **Minimum Window Substring** 🔴 | JS: ❌ | Java: ❌
+- **Valid Anagram** 🟢 | JS: ❌ | Java: ❌
+- **Group Anagrams** 🟡 | JS: ❌ | Java: ❌
+- **Valid Parentheses** 🟢 | JS: ❌ | Java: ❌
+- **Valid Palindrome** 🟢 | JS: ❌ | Java: ❌
+- **Longest Palindromic Substring** 🟡 | JS: ❌ | Java: ❌
+- **Palindromic Substrings** 🟡 | JS: ❌ | Java: ❌
+
+#### Tree (11 problems)
+
+- **Maximum Depth of Binary Tree** 🟢 | JS: ❌ | Java: ❌
+- **Same Tree** 🟢 | JS: ❌ | Java: ❌
+- **Invert Binary Tree** 🟢 | JS: ❌ | Java: ❌
+- **Binary Tree Maximum Path Sum** 🔴 | JS: ❌ | Java: ❌
+- **Binary Tree Level Order Traversal** 🟡 | JS: ❌ | Java: ❌
+- **Serialize and Deserialize Binary Tree** 🔴 | JS: ❌ | Java: ❌
+- **Subtree of Another Tree** 🟡 | JS: ❌ | Java: ❌
+- **Construct Binary Tree from Preorder and Inorder Traversal** 🟡 | JS: ❌ | Java: ❌
+- **Validate Binary Search Tree** 🟡 | JS: ❌ | Java: ❌
+- **Kth Smallest Element in a BST** 🟡 | JS: ❌ | Java: ❌
+- **Lowest Common Ancestor of a Binary Search Tree** 🟢 | JS: ❌ | Java: ❌
+
+#### Heap (2 problems)
+
+- **Top K Frequent Elements** 🟡 | JS: ❌ | Java: ❌
+- **Find Median from Data Stream** 🔴 | JS: ❌ | Java: ❌
+
+#### Trie (3 problems)
+
+- **Implement Trie (Prefix Tree)** 🟡 | JS: ❌ | Java: ❌
+- **Add and Search Word** 🟡 | JS: ❌ | Java: ❌
+- **Word Search II** 🔴 | JS: ❌ | Java: ❌
+
+#### Design (2 problems)
+
+- **LRU Cache** 🟡 | JS: ❌ | Java: ❌
+- **Min Stack** 🟢 | JS: ❌ | Java: ❌
+
+
+### How to Update Progress
+
+```bash
+# Mark problem as completed
+node progress-tracker.js mark <problem-id> <javascript|java>
+
+# View detailed stats
+node progress-tracker.js stats
+
+# Examples:
+node progress-tracker.js mark 1 javascript  # Mark Two Sum as completed in JS
+node progress-tracker.js mark 1 java        # Mark Two Sum as completed in Java
+```
+
+<!-- PROGRESS-END -->
 
 ## 🤝 Contributing
 

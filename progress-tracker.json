@@ -1,0 +1,1333 @@
+{
+  "metadata": {
+    "lastUpdated": "2025-08-02T23:49:01.317Z",
+    "totalProblems": 75,
+    "studentName": "",
+    "studyStartDate": "",
+    "completionTarget": ""
+  },
+  "categories": {
+    "Array": {
+      "count": 12,
+      "problems": [
+        {
+          "id": 1,
+          "name": "Two Sum",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "hash-map",
+            "two-pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 2,
+          "name": "Best Time to Buy and Sell Stock",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "greedy",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 3,
+          "name": "Contains Duplicate",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "hash-set",
+            "sorting"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 4,
+          "name": "Product of Array Except Self",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "prefix-sum",
+            "array-manipulation"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 5,
+          "name": "Maximum Subarray",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "kadanes-algorithm",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 6,
+          "name": "Maximum Product Subarray",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "array-traversal"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 7,
+          "name": "Find Minimum in Rotated Sorted Array",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "binary-search",
+            "rotated-array"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 8,
+          "name": "Search in Rotated Sorted Array",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "binary-search",
+            "rotated-array"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 9,
+          "name": "3Sum",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "two-pointers",
+            "sorting",
+            "hash-set"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 10,
+          "name": "Container With Most Water",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "two-pointers",
+            "greedy"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Binary": {
+      "count": 5,
+      "problems": [
+        {
+          "id": 11,
+          "name": "Sum of Two Integers",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "bit-manipulation"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 12,
+          "name": "Number of 1 Bits",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "bit-manipulation"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 13,
+          "name": "Counting Bits",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "bit-manipulation",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 14,
+          "name": "Missing Number",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "bit-manipulation",
+            "math"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 15,
+          "name": "Reverse Bits",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "bit-manipulation"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Dynamic Programming": {
+      "count": 12,
+      "problems": [
+        {
+          "id": 16,
+          "name": "Climbing Stairs",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "dynamic-programming",
+            "fibonacci"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 17,
+          "name": "Coin Change",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "knapsack"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 18,
+          "name": "Longest Increasing Subsequence",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "binary-search"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 19,
+          "name": "Longest Common Subsequence",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "string"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 20,
+          "name": "Word Break Problem",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "hash-set"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 21,
+          "name": "Combination Sum",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "backtracking",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 22,
+          "name": "House Robber",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 23,
+          "name": "House Robber II",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 24,
+          "name": "Decode Ways",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "string"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 25,
+          "name": "Unique Paths",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "dynamic-programming",
+            "combinatorics"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 26,
+          "name": "Jump Game",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "greedy",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Graph": {
+      "count": 7,
+      "problems": [
+        {
+          "id": 27,
+          "name": "Clone Graph",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "graph",
+            "dfs",
+            "hash-map"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 28,
+          "name": "Course Schedule",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "graph",
+            "topological-sort",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 29,
+          "name": "Pacific Atlantic Water Flow",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "graph",
+            "dfs",
+            "bfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 30,
+          "name": "Number of Islands",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "graph",
+            "dfs",
+            "bfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 31,
+          "name": "Longest Consecutive Sequence",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "hash-set",
+            "union-find"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 32,
+          "name": "Alien Dictionary",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "graph",
+            "topological-sort"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 33,
+          "name": "Graph Valid Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "graph",
+            "union-find",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Interval": {
+      "count": 2,
+      "problems": [
+        {
+          "id": 34,
+          "name": "Insert Interval",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "array",
+            "intervals"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 35,
+          "name": "Merge Intervals",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "array",
+            "intervals",
+            "sorting"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Linked List": {
+      "count": 6,
+      "problems": [
+        {
+          "id": 36,
+          "name": "Reverse Linked List",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "linked-list",
+            "pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 37,
+          "name": "Detect Cycle in Linked List",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "linked-list",
+            "two-pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 38,
+          "name": "Merge Two Sorted Lists",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "linked-list",
+            "merging"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 39,
+          "name": "Merge k Sorted Lists",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "linked-list",
+            "heap",
+            "divide-conquer"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 40,
+          "name": "Remove Nth Node From End of List",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "linked-list",
+            "two-pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 41,
+          "name": "Reorder List",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "linked-list",
+            "two-pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Matrix": {
+      "count": 4,
+      "problems": [
+        {
+          "id": 42,
+          "name": "Set Matrix Zeroes",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "matrix",
+            "array"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 43,
+          "name": "Spiral Matrix",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "matrix",
+            "array"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 44,
+          "name": "Rotate Image",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "matrix",
+            "array"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 45,
+          "name": "Word Search",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "matrix",
+            "backtracking",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "String": {
+      "count": 9,
+      "problems": [
+        {
+          "id": 46,
+          "name": "Longest Substring Without Repeating Characters",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "string",
+            "sliding-window",
+            "hash-set"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 47,
+          "name": "Longest Repeating Character Replacement",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "string",
+            "sliding-window"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 48,
+          "name": "Minimum Window Substring",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "string",
+            "sliding-window",
+            "hash-map"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 49,
+          "name": "Valid Anagram",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "string",
+            "hash-map",
+            "sorting"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 50,
+          "name": "Group Anagrams",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "string",
+            "hash-map",
+            "sorting"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 51,
+          "name": "Valid Parentheses",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "string",
+            "stack"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 52,
+          "name": "Valid Palindrome",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "string",
+            "two-pointers"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 53,
+          "name": "Longest Palindromic Substring",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "string",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 54,
+          "name": "Palindromic Substrings",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "string",
+            "dynamic-programming"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Tree": {
+      "count": 11,
+      "problems": [
+        {
+          "id": 55,
+          "name": "Maximum Depth of Binary Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "tree",
+            "dfs",
+            "recursion"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 56,
+          "name": "Same Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "tree",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 57,
+          "name": "Invert Binary Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "tree",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 58,
+          "name": "Binary Tree Maximum Path Sum",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "tree",
+            "dfs",
+            "recursion"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 59,
+          "name": "Binary Tree Level Order Traversal",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "tree",
+            "bfs",
+            "queue"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 60,
+          "name": "Serialize and Deserialize Binary Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "tree",
+            "dfs",
+            "string"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 61,
+          "name": "Subtree of Another Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "tree",
+            "dfs"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 62,
+          "name": "Construct Binary Tree from Preorder and Inorder Traversal",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "tree",
+            "array",
+            "hash-map"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 63,
+          "name": "Validate Binary Search Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "tree",
+            "dfs",
+            "bst"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 64,
+          "name": "Kth Smallest Element in a BST",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "tree",
+            "dfs",
+            "bst"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 65,
+          "name": "Lowest Common Ancestor of a Binary Search Tree",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "tree",
+            "bst"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Heap": {
+      "count": 2,
+      "problems": [
+        {
+          "id": 66,
+          "name": "Top K Frequent Elements",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "heap",
+            "hash-map",
+            "sorting"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 67,
+          "name": "Find Median from Data Stream",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "heap",
+            "design"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Trie": {
+      "count": 3,
+      "problems": [
+        {
+          "id": 68,
+          "name": "Implement Trie (Prefix Tree)",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "trie",
+            "design"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 69,
+          "name": "Add and Search Word",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "trie",
+            "dfs",
+            "design"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 70,
+          "name": "Word Search II",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Hard",
+          "tags": [
+            "trie",
+            "backtracking",
+            "matrix"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    },
+    "Design": {
+      "count": 2,
+      "problems": [
+        {
+          "id": 71,
+          "name": "LRU Cache",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Medium",
+          "tags": [
+            "design",
+            "hash-map",
+            "doubly-linked-list"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        },
+        {
+          "id": 72,
+          "name": "Min Stack",
+          "javascript": false,
+          "java": false,
+          "difficulty": "Easy",
+          "tags": [
+            "design",
+            "stack"
+          ],
+          "dateCompleted": {
+            "javascript": null,
+            "java": null
+          }
+        }
+      ]
+    }
+  },
+  "stats": {
+    "overall": {
+      "javascript": {
+        "completed": 0,
+        "total": 75,
+        "percentage": 0
+      },
+      "java": {
+        "completed": 0,
+        "total": 75,
+        "percentage": 0
+      }
+    },
+    "byCategory": {
+      "Array": {
+        "javascript": {
+          "completed": 0,
+          "total": 12,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 12,
+          "percentage": 0
+        }
+      },
+      "Binary": {
+        "javascript": {
+          "completed": 0,
+          "total": 5,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 5,
+          "percentage": 0
+        }
+      },
+      "Dynamic Programming": {
+        "javascript": {
+          "completed": 0,
+          "total": 12,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 12,
+          "percentage": 0
+        }
+      },
+      "Graph": {
+        "javascript": {
+          "completed": 0,
+          "total": 7,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 7,
+          "percentage": 0
+        }
+      },
+      "Interval": {
+        "javascript": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        }
+      },
+      "Linked List": {
+        "javascript": {
+          "completed": 0,
+          "total": 6,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 6,
+          "percentage": 0
+        }
+      },
+      "Matrix": {
+        "javascript": {
+          "completed": 0,
+          "total": 4,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 4,
+          "percentage": 0
+        }
+      },
+      "String": {
+        "javascript": {
+          "completed": 0,
+          "total": 9,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 9,
+          "percentage": 0
+        }
+      },
+      "Tree": {
+        "javascript": {
+          "completed": 0,
+          "total": 11,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 11,
+          "percentage": 0
+        }
+      },
+      "Heap": {
+        "javascript": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        }
+      },
+      "Trie": {
+        "javascript": {
+          "completed": 0,
+          "total": 3,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 3,
+          "percentage": 0
+        }
+      },
+      "Design": {
+        "javascript": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        },
+        "java": {
+          "completed": 0,
+          "total": 2,
+          "percentage": 0
+        }
+      }
+    },
+    "recentActivity": [],
+    "studyStreak": 0,
+    "averageProblemsPerDay": 0
+  }
+}
