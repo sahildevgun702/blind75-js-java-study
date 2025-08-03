@@ -134,23 +134,28 @@ class CodeQuestAcademy {
     async loadProblemsData() {
         // Load from our existing progress tracker data
         try {
-            const response = await fetch('../tools/progress-tracker.json');
+            const response = await fetch('./progress-tracker.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
             this.problemsData = data;
-            this.renderQuestMap();
+            console.log('✅ Progress tracker data loaded successfully');
         } catch (error) {
-            console.error('Failed to load problems data:', error);
+            console.log('📦 Using sample data (could not load progress tracker)');
             // Fallback to sample data
             this.problemsData = this.generateSampleData();
-            this.renderQuestMap();
         }
+        
+        // Always render quest map after loading data
+        this.renderQuestMap();
     }
 
     generateSampleData() {
         return {
             categories: {
                 "Array": {
-                    count: 12,
+                    count: 15,
                     problems: [
                         {
                             id: 1,
@@ -499,6 +504,303 @@ Visual: Water pools between buildings</pre>
                                 "⚡ Keep track of max heights seen so far",
                                 "🧠 Alternative: Use stack to track boundaries"
                             ]
+                        },
+                        {
+                            id: 10,
+                            name: "Maximum Subarray",
+                            difficulty: "Easy",
+                            tags: ["Array", "Dynamic Programming"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Find the contiguous subarray with the largest sum.`,
+                            examples: "Input: nums = [-2,1,-3,4,-1,2,1,-5,4]\nOutput: 6 (subarray [4,-1,2,1])",
+                            hints: [
+                                "Think about Kadane's algorithm",
+                                "Keep track of current sum and max sum",
+                                "Reset current sum when it becomes negative"
+                            ]
+                        },
+                        {
+                            id: 11,
+                            name: "Product of Array Except Self",
+                            difficulty: "Medium",
+                            tags: ["Array"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Return array where each element is product of all elements except itself.`,
+                            examples: "Input: nums = [1,2,3,4]\nOutput: [24,12,8,6]",
+                            hints: [
+                                "Think about left and right products",
+                                "Use two passes through the array",
+                                "Can you do it without division?"
+                            ]
+                        },
+                        {
+                            id: 12,
+                            name: "Find Minimum in Rotated Sorted Array",
+                            difficulty: "Medium",
+                            tags: ["Array", "Binary Search"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Find the minimum element in a rotated sorted array.`,
+                            examples: "Input: nums = [3,4,5,1,2]\nOutput: 1",
+                            hints: [
+                                "Use binary search",
+                                "Compare middle with right element",
+                                "Decide which half to search"
+                            ]
+                        },
+                        {
+                            id: 13,
+                            name: "Search in Rotated Sorted Array",
+                            difficulty: "Medium",
+                            tags: ["Array", "Binary Search"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Search for target in rotated sorted array.`,
+                            examples: "Input: nums = [4,5,6,7,0,1,2], target = 0\nOutput: 4",
+                            hints: [
+                                "Modified binary search",
+                                "Check which half is sorted",
+                                "Search in the appropriate half"
+                            ]
+                        }
+                    ]
+                },
+                "String": {
+                    count: 10,
+                    problems: [
+                        {
+                            id: 14,
+                            name: "Valid Anagram",
+                            difficulty: "Easy",
+                            tags: ["String", "Hash Table"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Check if two strings are anagrams of each other.`,
+                            examples: "Input: s = 'anagram', t = 'nagaram'\nOutput: true",
+                            hints: [
+                                "Count character frequencies",
+                                "Compare character counts",
+                                "Sort strings and compare"
+                            ]
+                        },
+                        {
+                            id: 15,
+                            name: "Valid Parentheses",
+                            difficulty: "Easy",
+                            tags: ["String", "Stack"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Check if parentheses are properly matched.`,
+                            examples: "Input: s = '()[]{}'\nOutput: true",
+                            hints: [
+                                "Use a stack",
+                                "Push opening brackets",
+                                "Pop and match closing brackets"
+                            ]
+                        },
+                        {
+                            id: 16,
+                            name: "Longest Palindromic Substring",
+                            difficulty: "Medium",
+                            tags: ["String", "Dynamic Programming"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Find the longest palindromic substring.`,
+                            examples: "Input: s = 'babad'\nOutput: 'bab' or 'aba'",
+                            hints: [
+                                "Expand around centers",
+                                "Check odd and even length palindromes",
+                                "Dynamic programming approach"
+                            ]
+                        },
+                        {
+                            id: 17,
+                            name: "Palindromic Substrings",
+                            difficulty: "Medium",
+                            tags: ["String", "Dynamic Programming"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Count the number of palindromic substrings.`,
+                            examples: "Input: s = 'abc'\nOutput: 3 ('a', 'b', 'c')",
+                            hints: [
+                                "Expand around each character",
+                                "Count both odd and even palindromes",
+                                "Use helper function"
+                            ]
+                        }
+                    ]
+                },
+                "Linked List": {
+                    count: 8,
+                    problems: [
+                        {
+                            id: 18,
+                            name: "Reverse Linked List",
+                            difficulty: "Easy",
+                            tags: ["Linked List"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Reverse a singly linked list.`,
+                            examples: "Input: 1->2->3->4->5\nOutput: 5->4->3->2->1",
+                            hints: [
+                                "Use three pointers: prev, curr, next",
+                                "Iteratively reverse connections",
+                                "Consider recursive approach"
+                            ]
+                        },
+                        {
+                            id: 19,
+                            name: "Linked List Cycle",
+                            difficulty: "Easy",
+                            tags: ["Linked List", "Two Pointers"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Detect if linked list has a cycle.`,
+                            examples: "Input: [3,2,0,-4] with cycle\nOutput: true",
+                            hints: [
+                                "Floyd's cycle detection algorithm",
+                                "Use slow and fast pointers",
+                                "If fast catches slow, there's a cycle"
+                            ]
+                        },
+                        {
+                            id: 20,
+                            name: "Merge Two Sorted Lists",
+                            difficulty: "Easy",
+                            tags: ["Linked List"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Merge two sorted linked lists.`,
+                            examples: "Input: l1 = [1,2,4], l2 = [1,3,4]\nOutput: [1,1,2,3,4,4]",
+                            hints: [
+                                "Use dummy node",
+                                "Compare values and link smaller",
+                                "Handle remaining nodes"
+                            ]
+                        }
+                    ]
+                },
+                "Tree": {
+                    count: 12,
+                    problems: [
+                        {
+                            id: 21,
+                            name: "Invert Binary Tree",
+                            difficulty: "Easy",
+                            tags: ["Tree", "Binary Tree"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Invert/flip a binary tree.`,
+                            examples: "Input: [4,2,7,1,3,6,9]\nOutput: [4,7,2,9,6,3,1]",
+                            hints: [
+                                "Recursively swap left and right children",
+                                "Base case: null node",
+                                "Can also use BFS/DFS iteratively"
+                            ]
+                        },
+                        {
+                            id: 22,
+                            name: "Maximum Depth of Binary Tree",
+                            difficulty: "Easy",
+                            tags: ["Tree", "Binary Tree", "DFS"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Find the maximum depth of a binary tree.`,
+                            examples: "Input: [3,9,20,null,null,15,7]\nOutput: 3",
+                            hints: [
+                                "Use recursion",
+                                "Max depth = 1 + max(left depth, right depth)",
+                                "Base case: null node returns 0"
+                            ]
+                        },
+                        {
+                            id: 23,
+                            name: "Same Tree",
+                            difficulty: "Easy",
+                            tags: ["Tree", "Binary Tree"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Check if two binary trees are the same.`,
+                            examples: "Input: p = [1,2,3], q = [1,2,3]\nOutput: true",
+                            hints: [
+                                "Compare values recursively",
+                                "Check both left and right subtrees",
+                                "Handle null cases"
+                            ]
+                        }
+                    ]
+                },
+                "Dynamic Programming": {
+                    count: 8,
+                    problems: [
+                        {
+                            id: 24,
+                            name: "Climbing Stairs",
+                            difficulty: "Easy",
+                            tags: ["Dynamic Programming"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Count ways to climb n stairs (1 or 2 steps at a time).`,
+                            examples: "Input: n = 3\nOutput: 3 (1+1+1, 1+2, 2+1)",
+                            hints: [
+                                "This is Fibonacci sequence",
+                                "dp[i] = dp[i-1] + dp[i-2]",
+                                "Base cases: dp[1] = 1, dp[2] = 2"
+                            ]
+                        },
+                        {
+                            id: 25,
+                            name: "House Robber",
+                            difficulty: "Medium",
+                            tags: ["Dynamic Programming"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Rob houses to maximize money without robbing adjacent houses.`,
+                            examples: "Input: nums = [2,7,9,3,1]\nOutput: 12 (rob 2, 9, 1)",
+                            hints: [
+                                "For each house: rob it or don't rob it",
+                                "dp[i] = max(dp[i-1], dp[i-2] + nums[i])",
+                                "Track max money at each house"
+                            ]
+                        }
+                    ]
+                },
+                "Graph": {
+                    count: 6,
+                    problems: [
+                        {
+                            id: 26,
+                            name: "Number of Islands",
+                            difficulty: "Medium",
+                            tags: ["Graph", "DFS", "BFS"],
+                            javascript: false,
+                            java: false,
+                            dateCompleted: { javascript: null, java: null },
+                            description: `Count the number of islands in a 2D grid.`,
+                            examples: "Input: grid with 1s and 0s\nOutput: number of connected 1s",
+                            hints: [
+                                "Use DFS or BFS",
+                                "Mark visited cells",
+                                "Count connected components"
+                            ]
                         }
                     ]
                 }
@@ -524,25 +826,46 @@ Visual: Water pools between buildings</pre>
 
     renderQuestMap() {
         const questMap = document.getElementById('questMap');
-        if (!this.problemsData) return;
+        if (!this.problemsData) {
+            console.log('❌ No problems data available');
+            return;
+        }
 
         questMap.innerHTML = '';
 
+        let nodeCount = 0;
         Object.entries(this.problemsData.categories).forEach(([category, data]) => {
             data.problems.forEach(problem => {
                 const questNode = this.createQuestNode(problem, category);
                 questMap.appendChild(questNode);
+                nodeCount++;
             });
         });
+        
+        // console.log(`✅ Rendered ${nodeCount} quest nodes`);
     }
 
     createQuestNode(problem, category) {
         const node = document.createElement('div');
         node.className = 'quest-node animate-slide-in';
-        node.onclick = () => this.openChallenge(problem, category);
-
+        
         const isCompleted = this.playerData.completedProblems.some(p => p.id === problem.id);
         const isAvailable = this.isProblemAvailable(problem);
+        
+        // Make the node clickable only if available
+        if (isAvailable || isCompleted) {
+            node.style.cursor = 'pointer';
+            node.onclick = (e) => {
+                e.preventDefault();
+                this.openChallenge(problem, category);
+            };
+        } else {
+            node.style.cursor = 'not-allowed';
+            node.onclick = (e) => {
+                e.preventDefault();
+                this.showNotification('🔒 Complete previous challenges to unlock this one!', 'warning');
+            };
+        }
 
         node.innerHTML = `
             <div class="quest-header">
@@ -646,48 +969,583 @@ Visual: Water pools between buildings</pre>
         document.getElementById('difficultyBadge').textContent = problem.difficulty;
         document.getElementById('difficultyBadge').className = `difficulty-badge ${problem.difficulty.toLowerCase()}`;
         document.getElementById('categoryBadge').textContent = problem.category;
+        
+        // Show comprehensive problem description with documentation
         document.getElementById('problemDescription').innerHTML = `
-            <h4>Problem Description</h4>
-            <p>${problem.description || 'Solve this challenging problem!'}</p>
-            ${problem.examples ? `<h5>Example:</h5><pre>${problem.examples}</pre>` : ''}
+            <div class="problem-tabs">
+                <button class="problem-tab active" data-tab="description">📝 Problem</button>
+                <button class="problem-tab" data-tab="docs">📚 Documentation</button>
+                <button class="problem-tab" data-tab="hints">💡 Hints</button>
+            </div>
+            
+            <div class="tab-content active" id="description-content">
+                ${problem.description || `
+                    <h4>🎯 Challenge: ${problem.name}</h4>
+                    <p>Master this fundamental ${problem.category} problem!</p>
+                    ${problem.examples ? `<div class="examples"><h5>💫 Example:</h5><pre>${problem.examples}</pre></div>` : ''}
+                `}
+            </div>
+            
+            <div class="tab-content" id="docs-content">
+                ${this.getDocumentationForProblem(problem)}
+            </div>
+            
+            <div class="tab-content" id="hints-content">
+                ${this.getHintsForProblem(problem)}
+            </div>
         `;
+        
+        // Set up problem tab switching
+        this.setupProblemTabs();
         
         // Set up code editor with starter code
         this.setupCodeEditor();
         
         modal.style.display = 'block';
+        modal.classList.add('show');
         modal.classList.add('animate-slide-in');
     }
 
     closeModal() {
-        document.getElementById('challengeModal').style.display = 'none';
+        const modal = document.getElementById('challengeModal');
+        modal.style.display = 'none';
+        modal.classList.remove('show');
+        modal.classList.remove('animate-slide-in');
     }
 
     setupCodeEditor() {
-        const starterCode = {
-            javascript: `function twoSum(nums, target) {
+        const problem = this.currentProblem;
+        const starterCode = this.getStarterCode(problem);
+        
+        document.getElementById('codeInput').value = starterCode[this.currentLanguage];
+    }
+    
+    getStarterCode(problem) {
+        const problemTemplates = {
+            'Two Sum': {
+                javascript: `function twoSum(nums, target) {
     // Your solution here
+    // Hint: Consider using a hash map for O(n) solution
     return [];
 }
 
 // Test your solution
-console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]`,
-            java: `public class Solution {
+console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // Expected: [1, 2]`,
+                java: `import java.util.*;
+
+public class Solution {
     public int[] twoSum(int[] nums, int target) {
         // Your solution here
+        // Hint: Consider using HashMap for O(n) solution
         return new int[0];
     }
     
     // Test your solution
     public static void main(String[] args) {
         Solution sol = new Solution();
-        int[] result = sol.twoSum(new int[]{2, 7, 11, 15}, 9);
-        // Expected: [0, 1]
+        int[] result1 = sol.twoSum(new int[]{2, 7, 11, 15}, 9);
+        int[] result2 = sol.twoSum(new int[]{3, 2, 4}, 6);
+        System.out.println(Arrays.toString(result1)); // Expected: [0, 1]
+        System.out.println(Arrays.toString(result2)); // Expected: [1, 2]
+    }
+}`
+            },
+            'Contains Duplicate': {
+                javascript: `function containsDuplicate(nums) {
+    // Your solution here
+    // Hint: Consider using a Set for O(n) solution
+    return false;
+}
+
+// Test your solution
+console.log(containsDuplicate([1,2,3,1])); // Expected: true
+console.log(containsDuplicate([1,2,3,4])); // Expected: false`,
+                java: `import java.util.*;
+
+public class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        // Your solution here
+        // Hint: Consider using HashSet for O(n) solution
+        return false;
+    }
+    
+    // Test your solution
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.containsDuplicate(new int[]{1,2,3,1})); // Expected: true
+        System.out.println(sol.containsDuplicate(new int[]{1,2,3,4})); // Expected: false
+    }
+}`
+            },
+            'Maximum Subarray': {
+                javascript: `function maxSubArray(nums) {
+    // Your solution here
+    // Hint: Kadane's algorithm
+    // Track current sum and maximum sum
+    return 0;
+}
+
+// Test your solution
+console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // Expected: 6
+console.log(maxSubArray([1])); // Expected: 1`,
+                java: `public class Solution {
+    public int maxSubArray(int[] nums) {
+        // Your solution here
+        // Hint: Kadane's algorithm
+        // Track current sum and maximum sum
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4})); // Expected: 6
+        System.out.println(sol.maxSubArray(new int[]{1})); // Expected: 1
+    }
+}`
+            },
+            'Valid Anagram': {
+                javascript: `function isAnagram(s, t) {
+    // Your solution here
+    // Hint: Count character frequencies or sort both strings
+    return false;
+}
+
+// Test your solution
+console.log(isAnagram("anagram", "nagaram")); // Expected: true
+console.log(isAnagram("rat", "car")); // Expected: false`,
+                java: `import java.util.*;
+
+public class Solution {
+    public boolean isAnagram(String s, String t) {
+        // Your solution here
+        // Hint: Count character frequencies or sort both strings
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.isAnagram("anagram", "nagaram")); // Expected: true
+        System.out.println(sol.isAnagram("rat", "car")); // Expected: false
+    }
+}`
+            },
+            'Valid Parentheses': {
+                javascript: `function isValid(s) {
+    // Your solution here
+    // Hint: Use a stack to track opening brackets
+    return false;
+}
+
+// Test your solution
+console.log(isValid("()")); // Expected: true
+console.log(isValid("()[]{}")); // Expected: true
+console.log(isValid("(]")); // Expected: false`,
+                java: `import java.util.*;
+
+public class Solution {
+    public boolean isValid(String s) {
+        // Your solution here
+        // Hint: Use Stack to track opening brackets
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(sol.isValid("()")); // Expected: true
+        System.out.println(sol.isValid("()[]{}")); // Expected: true
+        System.out.println(sol.isValid("(]")); // Expected: false
+    }
+}`
+            }
+        };
+        
+        return problemTemplates[problem.name] || {
+            javascript: `// Write your solution here for ${problem.name}
+function solve() {
+    // Your code here
+}`,
+            java: `// Write your solution here for ${problem.name}
+public class Solution {
+    public void solve() {
+        // Your code here
     }
 }`
         };
+    }
+    
+    setupProblemTabs() {
+        document.querySelectorAll('.problem-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.problem-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                e.target.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = e.target.dataset.tab + '-content';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    }
+    
+    getDocumentationForProblem(problem) {
+        const docs = {
+            'Array': {
+                javascript: `
+                    <h4>📚 Arrays in JavaScript</h4>
+                    <h5>🔧 Key Methods & Concepts:</h5>
+                    <div class="code-example">
+                        <pre><code>// Creating arrays
+let arr = [1, 2, 3, 4, 5];
+let empty = [];
+
+// Accessing elements
+console.log(arr[0]); // 1
+console.log(arr.length); // 5
+
+// Common methods
+arr.push(6);        // Add to end
+arr.pop();          // Remove from end
+arr.unshift(0);     // Add to start
+arr.shift();        // Remove from start
+
+// Iteration
+for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+
+// Modern methods
+arr.forEach(item => console.log(item));
+arr.map(item => item * 2);
+arr.filter(item => item > 3);
+arr.find(item => item === 3);</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>Two Pointers:</strong> Use for sorted arrays or when you need to compare elements</li>
+                        <li>🗺️ <strong>Hash Maps:</strong> Store seen elements for O(1) lookup</li>
+                        <li>🔄 <strong>Sliding Window:</strong> For subarray problems</li>
+                        <li>📊 <strong>Prefix Sums:</strong> For range sum queries</li>
+                    </ul>
+                    
+                    <h5>⚡ Time Complexity:</h5>
+                    <ul>
+                        <li>Access: O(1)</li>
+                        <li>Search: O(n)</li>
+                        <li>Insertion: O(1) at end, O(n) elsewhere</li>
+                        <li>Deletion: O(1) at end, O(n) elsewhere</li>
+                    </ul>
+                `,
+                java: `
+                    <h4>📚 Arrays in Java</h4>
+                    <h5>🔧 Key Concepts & Methods:</h5>
+                    <div class="code-example">
+                        <pre><code>// Creating arrays
+int[] arr = {1, 2, 3, 4, 5};
+int[] empty = new int[10];
+
+// Accessing elements
+System.out.println(arr[0]); // 1
+System.out.println(arr.length); // 5
+
+// Useful classes
+import java.util.*;
+
+// ArrayList (dynamic arrays)
+List<Integer> list = new ArrayList<>();
+list.add(1);
+list.add(2);
+list.get(0);        // Get element
+list.size();        // Get size
+list.remove(0);     // Remove element
+
+// Arrays utility class
+Arrays.sort(arr);                    // Sort array
+Arrays.toString(arr);                // Convert to string
+Arrays.copyOf(arr, newLength);       // Copy array
+Arrays.binarySearch(arr, target);    // Binary search</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>Two Pointers:</strong> int left = 0, right = arr.length - 1;</li>
+                        <li>🗺️ <strong>HashMap:</strong> Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</li>
+                        <li>🔄 <strong>Sliding Window:</strong> Maintain window with two pointers</li>
+                        <li>📊 <strong>Prefix Sums:</strong> Build cumulative sum array</li>
+                    </ul>
+                    
+                    <h5>⚡ Time Complexity:</h5>
+                    <ul>
+                        <li>Access: O(1)</li>
+                        <li>Search: O(n)</li>
+                        <li>Insertion: O(1) at end, O(n) elsewhere</li>
+                        <li>Deletion: O(1) at end, O(n) elsewhere</li>
+                    </ul>
+                `
+            },
+            'String': {
+                javascript: `
+                    <h4>📚 Strings in JavaScript</h4>
+                    <h5>🔧 Key Methods & Concepts:</h5>
+                    <div class="code-example">
+                        <pre><code>// Creating strings
+let str = "Hello World";
+let template = \`Template \${str}\`;
+
+// String properties
+str.length          // Get length
+str[0]              // Access character (read-only)
+
+// Common methods
+str.charAt(0)       // Get character at index
+str.substring(0, 5) // Extract substring
+str.slice(0, 5)     // Extract slice
+str.split(" ")      // Split into array
+str.toLowerCase()   // Convert to lowercase
+str.toUpperCase()   // Convert to uppercase
+str.trim()          // Remove whitespace
+
+// Search methods
+str.indexOf("o")    // Find first occurrence
+str.includes("ell") // Check if contains
+str.startsWith("H") // Check start
+str.endsWith("d")   // Check end
+
+// Modern methods
+str.repeat(3)       // Repeat string
+str.padStart(10, "0") // Pad start</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>Character Frequency:</strong> Use Map or object to count characters</li>
+                        <li>🔄 <strong>Two Pointers:</strong> For palindromes and string comparisons</li>
+                        <li>📚 <strong>Stack:</strong> For matching parentheses and nested structures</li>
+                        <li>🌟 <strong>Sliding Window:</strong> For substring problems</li>
+                    </ul>
+                `,
+                java: `
+                    <h4>📚 Strings in Java</h4>
+                    <h5>🔧 Key Concepts & Methods:</h5>
+                    <div class="code-example">
+                        <pre><code>// Creating strings
+String str = "Hello World";
+StringBuilder sb = new StringBuilder();
+
+// String properties & methods
+str.length()              // Get length
+str.charAt(0)             // Get character at index
+str.substring(0, 5)       // Extract substring
+str.split(" ")            // Split into array
+str.toLowerCase()         // Convert to lowercase
+str.toUpperCase()         // Convert to uppercase
+str.trim()                // Remove whitespace
+
+// Search methods
+str.indexOf("o")          // Find first occurrence
+str.contains("ell")       // Check if contains
+str.startsWith("H")       // Check start
+str.endsWith("d")         // Check end
+
+// StringBuilder (mutable)
+sb.append("text")         // Add text
+sb.insert(0, "prefix")    // Insert at position
+sb.toString()             // Convert to String
+
+// Character arrays
+char[] chars = str.toCharArray();
+String newStr = new String(chars);</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>HashMap:</strong> Map&lt;Character, Integer&gt; for frequency counting</li>
+                        <li>🔄 <strong>Two Pointers:</strong> int left = 0, right = str.length() - 1;</li>
+                        <li>📚 <strong>Stack:</strong> Stack&lt;Character&gt; for matching problems</li>
+                        <li>🌟 <strong>StringBuilder:</strong> For string building operations</li>
+                    </ul>
+                `
+            },
+            'Linked List': {
+                javascript: `
+                    <h4>📚 Linked Lists in JavaScript</h4>
+                    <h5>🔧 Node Definition & Operations:</h5>
+                    <div class="code-example">
+                        <pre><code>// ListNode definition
+class ListNode {
+    constructor(val = 0, next = null) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+// Creating a linked list: 1 -> 2 -> 3
+let head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+
+// Traversal
+function traverse(head) {
+    let current = head;
+    while (current) {
+        console.log(current.val);
+        current = current.next;
+    }
+}
+
+// Common patterns
+function reverseList(head) {
+    let prev = null;
+    let current = head;
+    
+    while (current) {
+        let nextTemp = current.next;
+        current.next = prev;
+        prev = current;
+        current = nextTemp;
+    }
+    
+    return prev;
+}</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>Two Pointers:</strong> slow/fast for cycle detection</li>
+                        <li>🔄 <strong>Dummy Node:</strong> Simplify edge cases</li>
+                        <li>📚 <strong>Recursion:</strong> Natural fit for linked list problems</li>
+                        <li>🌟 <strong>Three Pointers:</strong> prev, current, next for reversal</li>
+                    </ul>
+                `,
+                java: `
+                    <h4>📚 Linked Lists in Java</h4>
+                    <h5>🔧 Node Definition & Operations:</h5>
+                    <div class="code-example">
+                        <pre><code>// ListNode definition
+class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { 
+        this.val = val; 
+        this.next = next; 
+    }
+}
+
+// Creating a linked list: 1 -> 2 -> 3
+ListNode head = new ListNode(1);
+head.next = new ListNode(2);
+head.next.next = new ListNode(3);
+
+// Traversal
+public void traverse(ListNode head) {
+    ListNode current = head;
+    while (current != null) {
+        System.out.println(current.val);
+        current = current.next;
+    }
+}
+
+// Reverse linked list
+public ListNode reverseList(ListNode head) {
+    ListNode prev = null;
+    ListNode current = head;
+    
+    while (current != null) {
+        ListNode nextTemp = current.next;
+        current.next = prev;
+        prev = current;
+        current = nextTemp;
+    }
+    
+    return prev;
+}</code></pre>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips:</h5>
+                    <ul>
+                        <li>🎯 <strong>Two Pointers:</strong> ListNode slow, fast for cycles</li>
+                        <li>🔄 <strong>Dummy Node:</strong> ListNode dummy = new ListNode(0);</li>
+                        <li>📚 <strong>Recursion:</strong> Base case: head == null</li>
+                        <li>🌟 <strong>Three Pointers:</strong> prev, current, next for operations</li>
+                    </ul>
+                `
+            }
+        };
         
-        document.getElementById('codeInput').value = starterCode[this.currentLanguage];
+        const defaultDoc = `
+            <h4>📚 Documentation for ${problem.category}</h4>
+            <p>Learn the fundamentals of ${problem.category} data structures and algorithms.</p>
+            <p>Switch between JavaScript and Java tabs above to see language-specific concepts and syntax.</p>
+            
+            <h5>🔧 General Concepts:</h5>
+            <ul>
+                <li><strong>Time Complexity:</strong> Analyze how your algorithm scales with input size</li>
+                <li><strong>Space Complexity:</strong> Consider memory usage of your solution</li>
+                <li><strong>Edge Cases:</strong> Think about empty inputs, single elements, and boundary conditions</li>
+                <li><strong>Optimization:</strong> Start with a working solution, then optimize</li>
+            </ul>
+            
+            <h5>💡 Problem-Solving Approach:</h5>
+            <ol>
+                <li>Understand the problem thoroughly</li>
+                <li>Work through examples manually</li>
+                <li>Identify patterns and edge cases</li>
+                <li>Choose appropriate data structures</li>
+                <li>Implement and test your solution</li>
+            </ol>
+        `;
+        
+        return docs[problem.category]?.[this.currentLanguage] || defaultDoc;
+    }
+    
+    getHintsForProblem(problem) {
+        if (problem.hints && problem.hints.length > 0) {
+            return `
+                <h4>💡 Progressive Hints</h4>
+                <div class="hints-container">
+                    ${problem.hints.map((hint, index) => `
+                        <div class="hint-item" onclick="this.querySelector('.hint-text').classList.toggle('hidden')">
+                            <span class="hint-number">${index + 1}</span>
+                            <strong>Hint ${index + 1}</strong>
+                            <div class="hint-text hidden">${hint}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        return `
+            <h4>💡 General Problem-Solving Tips</h4>
+            <div class="hints-container">
+                <div class="hint-item">
+                    <span class="hint-number">1</span>
+                    <strong>Understand the Problem</strong>
+                    <p>Read carefully and identify inputs, outputs, and constraints.</p>
+                </div>
+                <div class="hint-item">
+                    <span class="hint-number">2</span>
+                    <strong>Think of Examples</strong>
+                    <p>Work through small examples manually to understand the pattern.</p>
+                </div>
+                <div class="hint-item">
+                    <span class="hint-number">3</span>
+                    <strong>Consider Data Structures</strong>
+                    <p>What data structure would make this problem easier? Arrays, Hash Maps, etc.</p>
+                </div>
+                <div class="hint-item">
+                    <span class="hint-number">4</span>
+                    <strong>Start Simple</strong>
+                    <p>Write a brute force solution first, then optimize.</p>
+                </div>
+            </div>
+        `;
     }
 
     // Event Handlers
@@ -739,9 +1597,23 @@ console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]`,
         testResults.innerHTML = '<div class="testing">🧪 Running tests...</div>';
 
         setTimeout(() => {
-            const passed = Math.random() > 0.3; // 70% chance of passing for demo
+            // Check if code is meaningful (not just whitespace/comments)
+            const meaningfulCode = code.replace(/\/\*[\s\S]*?\*\/|\/\/.*$|^\s*$/gm, '').trim();
+            const hasFunction = /function\s+\w+|class\s+\w+|\w+\s*=\s*\(|\w+\s*\(/.test(meaningfulCode);
+            const hasLogic = meaningfulCode.length > 20 && (hasFunction || /if|for|while|return/.test(meaningfulCode));
             
-            if (passed) {
+            const passed = hasLogic ? Math.random() > 0.3 : false; // Only pass if there's actual code
+            
+            if (!hasLogic) {
+                testResults.innerHTML = `
+                    <div class="test-failure">
+                        <h4>⚠️ No meaningful code detected</h4>
+                        <p>❌ Please write a proper solution before running tests</p>
+                        <p>💡 Your code should include functions, logic, and meaningful implementation</p>
+                        <p>🎯 Hint: Start with the problem requirements and build your solution step by step</p>
+                    </div>
+                `;
+            } else if (passed) {
                 this.handleSuccessfulSubmission();
                 testResults.innerHTML = `
                     <div class="test-success">
@@ -757,7 +1629,7 @@ console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]`,
                         <h4>❌ Some tests failed</h4>
                         <p>✅ Test case 1: PASSED</p>
                         <p>❌ Test case 2: FAILED - Expected [0,1] but got []</p>
-                        <p>💡 Hint: Check your edge cases!</p>
+                        <p>💡 Hint: Check your edge cases and algorithm logic!</p>
                     </div>
                 `;
             }
@@ -821,8 +1693,14 @@ console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]`,
 
     // Helper Methods
     isProblemAvailable(problem) {
-        // For demo, make first few problems always available
-        return problem.id <= 5 || this.playerData.completedProblems.length >= problem.id - 3;
+        // Make first few problems always available, then unlock based on completion
+        if (problem.id <= 3) return true; // First 3 problems always available
+        
+        // For problems 4-6, need at least 1 completed
+        if (problem.id <= 6) return this.playerData.completedProblems.length >= 1;
+        
+        // For problems 7+, need at least 3 completed
+        return this.playerData.completedProblems.length >= 3;
     }
 
     getXPReward(difficulty) {
@@ -1038,12 +1916,23 @@ console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]`,
     // Revolutionary Features Implementation
     runCodeWithLiveFeedback() {
         const code = document.getElementById('codeInput').value;
-        const resultsDiv = document.getElementById('testResults');
+        let resultsDiv = document.getElementById('testResults');
         
         if (!resultsDiv) {
-            this.showNotification('🧪 Code is running in your mind! Think through the logic step by step.', 'info');
-            return;
+            // Create test results div if it doesn't exist
+            resultsDiv = document.createElement('div');
+            resultsDiv.id = 'testResults';
+            resultsDiv.className = 'test-results';
+            const codeEditor = document.querySelector('.code-editor');
+            if (codeEditor) {
+                codeEditor.appendChild(resultsDiv);
+            } else {
+                this.showNotification('🧪 Code is running in your mind! Think through the logic step by step.', 'info');
+                return;
+            }
         }
+        
+        resultsDiv.style.display = 'block';
         
         // Show live typing feedback
         resultsDiv.innerHTML = `
