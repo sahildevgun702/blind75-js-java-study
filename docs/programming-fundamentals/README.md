@@ -1,5 +1,38 @@
 # Programming Fundamentals: Learning to Think Like a Programmer 🧠
 
+## 🌟 Complete Beginner? Start Here!
+
+**Never coded before?** That's perfectly fine! This guide assumes zero programming experience and will teach you to think like a programmer step by step.
+
+### Prerequisites (Don't worry, we'll guide you!)
+- Basic computer skills (using files, folders, web browser)
+- Willingness to practice and learn from mistakes
+- About 30-60 minutes per day for focused learning
+
+### Your First Steps:
+1. **Choose Your Language**: We recommend starting with JavaScript (easier to set up)
+2. **Set Up Your Environment**: Follow our setup guide below
+3. **Learn the Basics**: Start with variables, loops, and functions
+4. **Practice Daily**: Even 15 minutes counts!
+
+---
+
+## 🚀 Quick Setup Guide
+
+### For JavaScript Beginners:
+1. **Install Visual Studio Code** (free code editor)
+2. **Install Node.js** from nodejs.org (to run JavaScript)
+3. **Test your setup**: Open terminal and type `node --version`
+
+### For Java Beginners:
+1. **Install Visual Studio Code** (free code editor)
+2. **Install Java Development Kit** (JDK 11 or higher)
+3. **Install Java Extension Pack** in VS Code
+
+**Need help?** The internet is your friend! Search "how to install [language] for beginners" and follow a recent tutorial.
+
+---
+
 ## Welcome to Your Programming Journey! 
 
 Before diving into the Blind 75 problems, you need to develop **algorithmic thinking**. This section will teach you how to approach ANY programming problem systematically.

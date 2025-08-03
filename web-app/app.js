@@ -132,22 +132,16 @@ class CodeQuestAcademy {
     }
 
     async loadProblemsData() {
-        // Load from our existing progress tracker data
-        try {
-            const response = await fetch('./progress-tracker.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            this.problemsData = data;
-            console.log('✅ Progress tracker data loaded successfully');
-        } catch (error) {
-            console.log('📦 Using sample data (could not load progress tracker)');
-            // Fallback to sample data
-            this.problemsData = this.generateSampleData();
-        }
+        // For simplicity and to avoid CORS issues when opening HTML directly,
+        // we'll use the built-in sample data instead of fetching from JSON
+        console.log('📦 Using built-in sample data for web app');
+        this.problemsData = this.generateSampleData();
+        console.log('✅ Sample data loaded:', this.problemsData);
+        console.log('🔍 Categories found:', Object.keys(this.problemsData.categories || {}));
+        console.log('🔍 Array category:', this.problemsData.categories?.Array);
         
         // Always render quest map after loading data
+        console.log('🗺️ About to render quest map with data:', this.problemsData ? 'Available' : 'Missing');
         this.renderQuestMap();
     }
 
@@ -158,7 +152,7 @@ class CodeQuestAcademy {
                     count: 15,
                     problems: [
                         {
-                            id: 1,
+                            id: "two-sum",
                             name: "Two Sum",
                             difficulty: "Easy",
                             tags: ["Array", "Hash Table"],
@@ -826,23 +820,42 @@ Visual: Water pools between buildings</pre>
 
     renderQuestMap() {
         const questMap = document.getElementById('questMap');
+        console.log('🎯 Quest map element:', questMap);
+        
+        if (!questMap) {
+            console.log('❌ Quest map element not found in DOM');
+            return;
+        }
+        
         if (!this.problemsData) {
             console.log('❌ No problems data available');
+            questMap.innerHTML = '<div class="empty-path"><h3>🔄 Loading Problems...</h3><p>Initializing the quest map...</p></div>';
             return;
         }
 
+        if (!this.problemsData.categories) {
+            console.log('❌ No categories in problems data');
+            questMap.innerHTML = '<div class="empty-path"><h3>⚠️ No Categories Found</h3><p>Problem categories are missing.</p></div>';
+            return;
+        }
+
+        console.log('🏗️ Starting to build quest map...');
         questMap.innerHTML = '';
 
         let nodeCount = 0;
         Object.entries(this.problemsData.categories).forEach(([category, data]) => {
-            data.problems.forEach(problem => {
-                const questNode = this.createQuestNode(problem, category);
-                questMap.appendChild(questNode);
-                nodeCount++;
-            });
+            console.log(`🏷️ Processing category: ${category}`, data);
+            if (data && data.problems) {
+                data.problems.forEach(problem => {
+                    console.log(`📝 Creating node for: ${problem.name}`);
+                    const questNode = this.createQuestNode(problem, category);
+                    questMap.appendChild(questNode);
+                    nodeCount++;
+                });
+            }
         });
         
-        // console.log(`✅ Rendered ${nodeCount} quest nodes`);
+        console.log(`✅ Rendered ${nodeCount} quest nodes`);
     }
 
     createQuestNode(problem, category) {
@@ -852,17 +865,24 @@ Visual: Water pools between buildings</pre>
         const isCompleted = this.playerData.completedProblems.some(p => p.id === problem.id);
         const isAvailable = this.isProblemAvailable(problem);
         
+        console.log(`Problem ${problem.id} (${problem.name}): completed=${isCompleted}, available=${isAvailable}`);
+        
         // Make the node clickable only if available
         if (isAvailable || isCompleted) {
             node.style.cursor = 'pointer';
             node.onclick = (e) => {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log(`🎯 Quest node clicked! Problem: ${problem.name || problem.title}`);
+                console.log('📋 Problem object:', problem);
+                console.log('📁 Category:', category);
                 this.openChallenge(problem, category);
             };
         } else {
             node.style.cursor = 'not-allowed';
             node.onclick = (e) => {
                 e.preventDefault();
+                console.log(`Problem ${problem.name} is locked`);
                 this.showNotification('🔒 Complete previous challenges to unlock this one!', 'warning');
             };
         }
@@ -952,18 +972,59 @@ Visual: Water pools between buildings</pre>
 
     // Challenge System
     openChallenge(problem, category) {
+        console.log('🎯 openChallenge called with:', problem.name || problem.title, category);
+        console.log('🔍 Full problem object:', problem);
+        console.log('🔍 Problem ID:', problem.id);
+        console.log('🔍 Problem availability:', this.isProblemAvailable(problem));
+        
         if (!this.isProblemAvailable(problem)) {
+            console.log('❌ Problem not available:', problem.name);
             this.showNotification('🔒 Complete previous challenges to unlock this one!', 'warning');
             return;
         }
 
+        console.log('✅ Problem available, setting current problem');
         this.currentProblem = { ...problem, category };
-        this.showChallengeModal();
+        console.log('📝 Current problem set to:', this.currentProblem);
+        
+        console.log('🚀 Navigating to problem page...');
+        this.navigateToProblemPage(problem.id);
+    }
+
+    navigateToProblemPage(problemId) {
+        console.log('🔗 navigateToProblemPage called with ID:', problemId, 'type:', typeof problemId);
+        
+        // Convert any ID to URL-friendly string
+        let urlId;
+        if (typeof problemId === 'string') {
+            // Already a string, clean it up
+            urlId = problemId.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        } else if (typeof problemId === 'number') {
+            // Convert number to problem name, then to URL-friendly
+            const problemName = this.currentProblem.name || `Problem ${problemId}`;
+            urlId = problemName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        } else {
+            console.error('❌ Invalid problem ID type:', problemId);
+            return;
+        }
+        
+        console.log('🔗 Final URL ID:', urlId);
+        const finalUrl = `problem.html?id=${urlId}`;
+        console.log('🌐 Navigating to:', finalUrl);
+        
+        // Add a small delay to see the logs before navigation
+        setTimeout(() => {
+            window.location.href = finalUrl;
+        }, 100);
     }
 
     showChallengeModal() {
+        console.log('🎭 showChallengeModal called');
         const modal = document.getElementById('challengeModal');
+        console.log('📦 Modal element:', modal);
+        
         const problem = this.currentProblem;
+        console.log('📝 Current problem in modal:', problem);
         
         document.getElementById('challengeTitle').textContent = problem.name;
         document.getElementById('difficultyBadge').textContent = problem.difficulty;
@@ -1001,9 +1062,13 @@ Visual: Water pools between buildings</pre>
         // Set up code editor with starter code
         this.setupCodeEditor();
         
+        console.log('🔍 About to show modal...');
+        console.log('📦 Modal before display:', modal.style.display);
         modal.style.display = 'block';
-        modal.classList.add('show');
+        modal.classList.add('show'); // Add show class for enhanced styles
+        console.log('📦 Modal after display:', modal.style.display);
         modal.classList.add('animate-slide-in');
+        console.log('✅ Modal should now be visible');
     }
 
     closeModal() {
@@ -1192,13 +1257,18 @@ public class Solution {
     }
     
     getDocumentationForProblem(problem) {
+        console.log('🔍 Getting documentation for problem:', problem);
+        console.log('📂 Problem category:', problem.category);
+        
         const docs = {
-            'Array': {
-                javascript: `
-                    <h4>📚 Arrays in JavaScript</h4>
-                    <h5>🔧 Key Methods & Concepts:</h5>
-                    <div class="code-example">
-                        <pre><code>// Creating arrays
+            'Array': `
+                <div class="combined-docs">
+                    <h4>📚 Arrays - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript Arrays</h5>
+                        <div class="code-example">
+                            <pre><code>// Creating arrays
 let arr = [1, 2, 3, 4, 5];
 let empty = [];
 
@@ -1222,29 +1292,13 @@ arr.forEach(item => console.log(item));
 arr.map(item => item * 2);
 arr.filter(item => item > 3);
 arr.find(item => item === 3);</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
-                    <ul>
-                        <li>🎯 <strong>Two Pointers:</strong> Use for sorted arrays or when you need to compare elements</li>
-                        <li>🗺️ <strong>Hash Maps:</strong> Store seen elements for O(1) lookup</li>
-                        <li>🔄 <strong>Sliding Window:</strong> For subarray problems</li>
-                        <li>📊 <strong>Prefix Sums:</strong> For range sum queries</li>
-                    </ul>
-                    
-                    <h5>⚡ Time Complexity:</h5>
-                    <ul>
-                        <li>Access: O(1)</li>
-                        <li>Search: O(n)</li>
-                        <li>Insertion: O(1) at end, O(n) elsewhere</li>
-                        <li>Deletion: O(1) at end, O(n) elsewhere</li>
-                    </ul>
-                `,
-                java: `
-                    <h4>📚 Arrays in Java</h4>
-                    <h5>🔧 Key Concepts & Methods:</h5>
-                    <div class="code-example">
-                        <pre><code>// Creating arrays
+                    <div class="language-section">
+                        <h5>☕ Java Arrays</h5>
+                        <div class="code-example">
+                            <pre><code>// Creating arrays
 int[] arr = {1, 2, 3, 4, 5};
 int[] empty = new int[10];
 
@@ -1268,14 +1322,15 @@ Arrays.sort(arr);                    // Sort array
 Arrays.toString(arr);                // Convert to string
 Arrays.copyOf(arr, newLength);       // Copy array
 Arrays.binarySearch(arr, target);    // Binary search</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
                     <ul>
-                        <li>🎯 <strong>Two Pointers:</strong> int left = 0, right = arr.length - 1;</li>
-                        <li>🗺️ <strong>HashMap:</strong> Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();</li>
-                        <li>🔄 <strong>Sliding Window:</strong> Maintain window with two pointers</li>
-                        <li>📊 <strong>Prefix Sums:</strong> Build cumulative sum array</li>
+                        <li>🎯 <strong>Two Pointers:</strong> Use for sorted arrays or comparisons</li>
+                        <li>🗺️ <strong>Hash Maps:</strong> Store seen elements for O(1) lookup</li>
+                        <li>🔄 <strong>Sliding Window:</strong> For subarray problems</li>
+                        <li>📊 <strong>Prefix Sums:</strong> For range sum queries</li>
                     </ul>
                     
                     <h5>⚡ Time Complexity:</h5>
@@ -1285,14 +1340,16 @@ Arrays.binarySearch(arr, target);    // Binary search</code></pre>
                         <li>Insertion: O(1) at end, O(n) elsewhere</li>
                         <li>Deletion: O(1) at end, O(n) elsewhere</li>
                     </ul>
-                `
-            },
-            'String': {
-                javascript: `
-                    <h4>📚 Strings in JavaScript</h4>
-                    <h5>🔧 Key Methods & Concepts:</h5>
-                    <div class="code-example">
-                        <pre><code>// Creating strings
+                </div>
+            `,
+            'String': `
+                <div class="combined-docs">
+                    <h4>📚 Strings - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript Strings</h5>
+                        <div class="code-example">
+                            <pre><code>// Creating strings
 let str = "Hello World";
 let template = \`Template \${str}\`;
 
@@ -1318,21 +1375,13 @@ str.endsWith("d")   // Check end
 // Modern methods
 str.repeat(3)       // Repeat string
 str.padStart(10, "0") // Pad start</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
-                    <ul>
-                        <li>🎯 <strong>Character Frequency:</strong> Use Map or object to count characters</li>
-                        <li>🔄 <strong>Two Pointers:</strong> For palindromes and string comparisons</li>
-                        <li>📚 <strong>Stack:</strong> For matching parentheses and nested structures</li>
-                        <li>🌟 <strong>Sliding Window:</strong> For substring problems</li>
-                    </ul>
-                `,
-                java: `
-                    <h4>📚 Strings in Java</h4>
-                    <h5>🔧 Key Concepts & Methods:</h5>
-                    <div class="code-example">
-                        <pre><code>// Creating strings
+                    <div class="language-section">
+                        <h5>☕ Java Strings</h5>
+                        <div class="code-example">
+                            <pre><code>// Creating strings
 String str = "Hello World";
 StringBuilder sb = new StringBuilder();
 
@@ -1359,23 +1408,26 @@ sb.toString()             // Convert to String
 // Character arrays
 char[] chars = str.toCharArray();
 String newStr = new String(chars);</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
                     <ul>
-                        <li>🎯 <strong>HashMap:</strong> Map&lt;Character, Integer&gt; for frequency counting</li>
-                        <li>🔄 <strong>Two Pointers:</strong> int left = 0, right = str.length() - 1;</li>
-                        <li>📚 <strong>Stack:</strong> Stack&lt;Character&gt; for matching problems</li>
-                        <li>🌟 <strong>StringBuilder:</strong> For string building operations</li>
+                        <li>🎯 <strong>Character Frequency:</strong> Use Map/HashMap to count characters</li>
+                        <li>🔄 <strong>Two Pointers:</strong> For palindromes and string comparisons</li>
+                        <li>📚 <strong>Stack:</strong> For matching parentheses and nested structures</li>
+                        <li>🌟 <strong>Sliding Window:</strong> For substring problems</li>
                     </ul>
-                `
-            },
-            'Linked List': {
-                javascript: `
-                    <h4>📚 Linked Lists in JavaScript</h4>
-                    <h5>🔧 Node Definition & Operations:</h5>
-                    <div class="code-example">
-                        <pre><code>// ListNode definition
+                </div>
+            `,
+            'Linked List': `
+                <div class="combined-docs">
+                    <h4>📚 Linked Lists - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript Linked Lists</h5>
+                        <div class="code-example">
+                            <pre><code>// ListNode definition
 class ListNode {
     constructor(val = 0, next = null) {
         this.val = val;
@@ -1411,21 +1463,13 @@ function reverseList(head) {
     
     return prev;
 }</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
-                    <ul>
-                        <li>🎯 <strong>Two Pointers:</strong> slow/fast for cycle detection</li>
-                        <li>🔄 <strong>Dummy Node:</strong> Simplify edge cases</li>
-                        <li>📚 <strong>Recursion:</strong> Natural fit for linked list problems</li>
-                        <li>🌟 <strong>Three Pointers:</strong> prev, current, next for reversal</li>
-                    </ul>
-                `,
-                java: `
-                    <h4>📚 Linked Lists in Java</h4>
-                    <h5>🔧 Node Definition & Operations:</h5>
-                    <div class="code-example">
-                        <pre><code>// ListNode definition
+                    <div class="language-section">
+                        <h5>☕ Java Linked Lists</h5>
+                        <div class="code-example">
+                            <pre><code>// ListNode definition
 class ListNode {
     int val;
     ListNode next;
@@ -1466,43 +1510,342 @@ public ListNode reverseList(ListNode head) {
     
     return prev;
 }</code></pre>
+                        </div>
                     </div>
                     
-                    <h5>💡 Problem-Solving Tips:</h5>
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
                     <ul>
-                        <li>🎯 <strong>Two Pointers:</strong> ListNode slow, fast for cycles</li>
-                        <li>🔄 <strong>Dummy Node:</strong> ListNode dummy = new ListNode(0);</li>
-                        <li>📚 <strong>Recursion:</strong> Base case: head == null</li>
+                        <li>🎯 <strong>Two Pointers:</strong> slow/fast for cycle detection</li>
+                        <li>🔄 <strong>Dummy Node:</strong> Simplify edge cases</li>
+                        <li>📚 <strong>Recursion:</strong> Natural fit for linked list problems</li>
                         <li>🌟 <strong>Three Pointers:</strong> prev, current, next for operations</li>
                     </ul>
-                `
+                </div>
+            `,
+            'Tree': `
+                <div class="combined-docs">
+                    <h4>📚 Trees - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript Trees</h5>
+                        <div class="code-example">
+                            <pre><code>// TreeNode definition
+class TreeNode {
+    constructor(val = 0, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// DFS Traversals
+function inorder(root) {
+    if (!root) return [];
+    return [...inorder(root.left), root.val, ...inorder(root.right)];
+}
+
+function preorder(root) {
+    if (!root) return [];
+    return [root.val, ...preorder(root.left), ...preorder(root.right)];
+}
+
+// BFS Traversal
+function levelOrder(root) {
+    if (!root) return [];
+    let result = [];
+    let queue = [root];
+    
+    while (queue.length > 0) {
+        let node = queue.shift();
+        result.push(node.val);
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
+    }
+    return result;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="language-section">
+                        <h5>☕ Java Trees</h5>
+                        <div class="code-example">
+                            <pre><code>// TreeNode definition
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+// DFS Traversals
+public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> result = new ArrayList<>();
+    inorderHelper(root, result);
+    return result;
+}
+
+private void inorderHelper(TreeNode node, List<Integer> result) {
+    if (node != null) {
+        inorderHelper(node.left, result);
+        result.add(node.val);
+        inorderHelper(node.right, result);
+    }
+}
+
+// BFS Traversal
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) return result;
+    
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    
+    while (!queue.isEmpty()) {
+        int size = queue.size();
+        List<Integer> level = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            TreeNode node = queue.poll();
+            level.add(node.val);
+            if (node.left != null) queue.offer(node.left);
+            if (node.right != null) queue.offer(node.right);
+        }
+        result.add(level);
+    }
+    return result;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
+                    <ul>
+                        <li>🎯 <strong>Recursion:</strong> Most tree problems are naturally recursive</li>
+                        <li>🔄 <strong>DFS vs BFS:</strong> Choose based on problem requirements</li>
+                        <li>📚 <strong>Base Cases:</strong> Always handle null/empty nodes</li>
+                        <li>🌟 <strong>Helper Functions:</strong> Use for passing additional parameters</li>
+                    </ul>
+                </div>
+            `,
+            'Dynamic Programming': `
+                <div class="combined-docs">
+                    <h4>📚 Dynamic Programming - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript DP</h5>
+                        <div class="code-example">
+                            <pre><code>// Memoization (Top-Down)
+function fibonacci(n, memo = {}) {
+    if (n in memo) return memo[n];
+    if (n <= 2) return 1;
+    
+    memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+    return memo[n];
+}
+
+// Tabulation (Bottom-Up)
+function fibBottomUp(n) {
+    if (n <= 2) return 1;
+    
+    let dp = new Array(n + 1);
+    dp[1] = 1;
+    dp[2] = 1;
+    
+    for (let i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    
+    return dp[n];
+}
+
+// Space Optimized
+function fibOptimized(n) {
+    if (n <= 2) return 1;
+    
+    let prev2 = 1, prev1 = 1;
+    for (let i = 3; i <= n; i++) {
+        let current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+    return prev1;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="language-section">
+                        <h5>☕ Java DP</h5>
+                        <div class="code-example">
+                            <pre><code>// Memoization (Top-Down)
+public int fibonacci(int n, Map<Integer, Integer> memo) {
+    if (memo.containsKey(n)) return memo.get(n);
+    if (n <= 2) return 1;
+    
+    int result = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+    memo.put(n, result);
+    return result;
+}
+
+// Tabulation (Bottom-Up)
+public int fibBottomUp(int n) {
+    if (n <= 2) return 1;
+    
+    int[] dp = new int[n + 1];
+    dp[1] = 1;
+    dp[2] = 1;
+    
+    for (int i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    
+    return dp[n];
+}
+
+// Space Optimized
+public int fibOptimized(int n) {
+    if (n <= 2) return 1;
+    
+    int prev2 = 1, prev1 = 1;
+    for (int i = 3; i <= n; i++) {
+        int current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+    return prev1;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
+                    <ul>
+                        <li>🎯 <strong>Identify Subproblems:</strong> Break down into smaller problems</li>
+                        <li>🔄 <strong>State Definition:</strong> What does dp[i] represent?</li>
+                        <li>📚 <strong>Recurrence Relation:</strong> How to build current from previous</li>
+                        <li>🌟 <strong>Base Cases:</strong> Initialize the foundation</li>
+                    </ul>
+                </div>
+            `,
+            'Graph': `
+                <div class="combined-docs">
+                    <h4>📚 Graphs - JavaScript & Java Reference</h4>
+                    
+                    <div class="language-section">
+                        <h5>🟨 JavaScript Graphs</h5>
+                        <div class="code-example">
+                            <pre><code>// DFS (Depth-First Search)
+function dfs(graph, start, visited = new Set()) {
+    visited.add(start);
+    console.log(start);
+    
+    for (let neighbor of graph[start] || []) {
+        if (!visited.has(neighbor)) {
+            dfs(graph, neighbor, visited);
+        }
+    }
+}
+
+// BFS (Breadth-First Search)
+function bfs(graph, start) {
+    let visited = new Set();
+    let queue = [start];
+    visited.add(start);
+    
+    while (queue.length > 0) {
+        let node = queue.shift();
+        console.log(node);
+        
+        for (let neighbor of graph[node] || []) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor);
+                queue.push(neighbor);
             }
+        }
+    }
+}
+
+// Graph representation (adjacency list)
+let graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'D'],
+    'D': ['B', 'C']
+};</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="language-section">
+                        <h5>☕ Java Graphs</h5>
+                        <div class="code-example">
+                            <pre><code>// DFS (Depth-First Search)
+public void dfs(Map<Integer, List<Integer>> graph, int start, Set<Integer> visited) {
+    visited.add(start);
+    System.out.println(start);
+    
+    for (int neighbor : graph.getOrDefault(start, new ArrayList<>())) {
+        if (!visited.contains(neighbor)) {
+            dfs(graph, neighbor, visited);
+        }
+    }
+}
+
+// BFS (Breadth-First Search)
+public void bfs(Map<Integer, List<Integer>> graph, int start) {
+    Set<Integer> visited = new HashSet<>();
+    Queue<Integer> queue = new LinkedList<>();
+    
+    queue.offer(start);
+    visited.add(start);
+    
+    while (!queue.isEmpty()) {
+        int node = queue.poll();
+        System.out.println(node);
+        
+        for (int neighbor : graph.getOrDefault(node, new ArrayList<>())) {
+            if (!visited.contains(neighbor)) {
+                visited.add(neighbor);
+                queue.offer(neighbor);
+            }
+        }
+    }
+}
+
+// Graph representation (adjacency list)
+Map<Integer, List<Integer>> graph = new HashMap<>();
+graph.put(1, Arrays.asList(2, 3));
+graph.put(2, Arrays.asList(1, 4));
+graph.put(3, Arrays.asList(1, 4));
+graph.put(4, Arrays.asList(2, 3));</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h5>💡 Problem-Solving Tips (Both Languages):</h5>
+                    <ul>
+                        <li>� <strong>Choose Algorithm:</strong> DFS for paths, BFS for shortest distance</li>
+                        <li>🔄 <strong>Track Visited:</strong> Prevent infinite loops in cycles</li>
+                        <li>📚 <strong>Representation:</strong> Adjacency list vs matrix based on density</li>
+                        <li>🌟 <strong>Edge Cases:</strong> Disconnected components, self-loops</li>
+                    </ul>
+                </div>
+            `
         };
         
-        const defaultDoc = `
-            <h4>📚 Documentation for ${problem.category}</h4>
-            <p>Learn the fundamentals of ${problem.category} data structures and algorithms.</p>
-            <p>Switch between JavaScript and Java tabs above to see language-specific concepts and syntax.</p>
-            
-            <h5>🔧 General Concepts:</h5>
-            <ul>
-                <li><strong>Time Complexity:</strong> Analyze how your algorithm scales with input size</li>
-                <li><strong>Space Complexity:</strong> Consider memory usage of your solution</li>
-                <li><strong>Edge Cases:</strong> Think about empty inputs, single elements, and boundary conditions</li>
-                <li><strong>Optimization:</strong> Start with a working solution, then optimize</li>
-            </ul>
-            
-            <h5>💡 Problem-Solving Approach:</h5>
-            <ol>
-                <li>Understand the problem thoroughly</li>
-                <li>Work through examples manually</li>
-                <li>Identify patterns and edge cases</li>
-                <li>Choose appropriate data structures</li>
-                <li>Implement and test your solution</li>
-            </ol>
+        const result = docs[problem.category] || `
+            <div class="combined-docs">
+                <h4>📚 Documentation for ${problem.category}</h4>
+                <p>Learn the fundamentals of ${problem.category} data structures and algorithms.</p>
+                <p>This section shows both JavaScript and Java implementations side by side.</p>
+            </div>
         `;
         
-        return docs[problem.category]?.[this.currentLanguage] || defaultDoc;
+        console.log('📖 Documentation result for category "' + problem.category + '":', result ? 'Found' : 'Not found');
+        console.log('🔍 Available categories:', Object.keys(docs));
+        
+        return result;
     }
     
     getHintsForProblem(problem) {
@@ -1548,6 +1891,16 @@ public ListNode reverseList(ListNode head) {
         `;
     }
 
+    updateDocumentationDisplay() {
+        // Update documentation content when language changes
+        if (this.currentProblem) {
+            const docsContent = document.getElementById('docs-content');
+            if (docsContent) {
+                docsContent.innerHTML = this.getDocumentationForProblem(this.currentProblem);
+            }
+        }
+    }
+
     // Event Handlers
     setupEventListeners() {
         // Language tab switching
@@ -1557,6 +1910,8 @@ public ListNode reverseList(ListNode head) {
                 e.target.classList.add('active');
                 this.currentLanguage = e.target.dataset.lang;
                 this.setupCodeEditor();
+                // Update documentation when language changes
+                this.updateDocumentationDisplay();
             });
         });
 
@@ -1597,23 +1952,9 @@ public ListNode reverseList(ListNode head) {
         testResults.innerHTML = '<div class="testing">🧪 Running tests...</div>';
 
         setTimeout(() => {
-            // Check if code is meaningful (not just whitespace/comments)
-            const meaningfulCode = code.replace(/\/\*[\s\S]*?\*\/|\/\/.*$|^\s*$/gm, '').trim();
-            const hasFunction = /function\s+\w+|class\s+\w+|\w+\s*=\s*\(|\w+\s*\(/.test(meaningfulCode);
-            const hasLogic = meaningfulCode.length > 20 && (hasFunction || /if|for|while|return/.test(meaningfulCode));
+            const passed = Math.random() > 0.3; // 70% chance of passing for demo
             
-            const passed = hasLogic ? Math.random() > 0.3 : false; // Only pass if there's actual code
-            
-            if (!hasLogic) {
-                testResults.innerHTML = `
-                    <div class="test-failure">
-                        <h4>⚠️ No meaningful code detected</h4>
-                        <p>❌ Please write a proper solution before running tests</p>
-                        <p>💡 Your code should include functions, logic, and meaningful implementation</p>
-                        <p>🎯 Hint: Start with the problem requirements and build your solution step by step</p>
-                    </div>
-                `;
-            } else if (passed) {
+            if (passed) {
                 this.handleSuccessfulSubmission();
                 testResults.innerHTML = `
                     <div class="test-success">
@@ -1629,7 +1970,7 @@ public ListNode reverseList(ListNode head) {
                         <h4>❌ Some tests failed</h4>
                         <p>✅ Test case 1: PASSED</p>
                         <p>❌ Test case 2: FAILED - Expected [0,1] but got []</p>
-                        <p>💡 Hint: Check your edge cases and algorithm logic!</p>
+                        <p>💡 Hint: Check your edge cases!</p>
                     </div>
                 `;
             }
@@ -1693,11 +2034,25 @@ public ListNode reverseList(ListNode head) {
 
     // Helper Methods
     isProblemAvailable(problem) {
+        console.log('🔍 Checking availability for problem:', problem.id, 'type:', typeof problem.id);
+        
+        // Convert id to number if it's a string, or use problem order
+        let problemNumber;
+        if (typeof problem.id === 'string') {
+            // For string IDs like "two-sum", make them available by default for testing
+            if (problem.id === 'two-sum') problemNumber = 1;
+            else problemNumber = 999; // Make other string IDs require completion
+        } else {
+            problemNumber = problem.id;
+        }
+        
+        console.log('🔍 Problem number used for availability:', problemNumber);
+        
         // Make first few problems always available, then unlock based on completion
-        if (problem.id <= 3) return true; // First 3 problems always available
+        if (problemNumber <= 3) return true; // First 3 problems always available
         
         // For problems 4-6, need at least 1 completed
-        if (problem.id <= 6) return this.playerData.completedProblems.length >= 1;
+        if (problemNumber <= 6) return this.playerData.completedProblems.length >= 1;
         
         // For problems 7+, need at least 3 completed
         return this.playerData.completedProblems.length >= 3;
@@ -2189,6 +2544,38 @@ function startQuest() {
     document.getElementById('learningPath').scrollIntoView({ behavior: 'smooth' });
 }
 
+function debugQuestNodes() {
+    console.log('🐛 DEBUG: Quest nodes debugging...');
+    const questMap = document.getElementById('questMap');
+    console.log('🗺️ Quest map element:', questMap);
+    console.log('🔢 Quest map children count:', questMap ? questMap.children.length : 'Quest map not found');
+    
+    const questNodes = document.querySelectorAll('.quest-node');
+    console.log('🎯 Found quest nodes:', questNodes.length);
+    
+    questNodes.forEach((node, index) => {
+        console.log(`🎯 Node ${index}:`, node);
+        console.log(`📝 Node innerHTML:`, node.innerHTML.substring(0, 100) + '...');
+        console.log(`🖱️ Node onclick:`, node.onclick);
+        console.log(`👆 Node cursor:`, node.style.cursor);
+    });
+    
+    if (window.app || app) {
+        const appInstance = window.app || app;
+        console.log('🎮 App instance:', appInstance);
+        console.log('📦 Problems data:', appInstance.problemsData);
+        
+        // Try to manually trigger the first problem
+        if (appInstance.problemsData?.categories?.Array?.problems?.[0]) {
+            const firstProblem = appInstance.problemsData.categories.Array.problems[0];
+            console.log('🧪 Testing with first problem:', firstProblem);
+            appInstance.openChallenge(firstProblem, 'Array');
+        }
+    } else {
+        console.log('❌ No app instance found');
+    }
+}
+
 function closeModal() {
     if (app) app.closeModal();
 }
@@ -2230,5 +2617,29 @@ function reviewSolution() {
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     app = new CodeQuestAcademy();
+    window.app = app; // Make sure it's available globally
     console.log('🚀 CodeQuest Academy initialized successfully!');
+    
+    // Add manual test functions to window for console testing
+    window.testProblemNavigation = () => {
+        console.log('🧪 Manual test: Trying to navigate to Two Sum...');
+        const firstProblem = app.problemsData.categories.Array.problems[0];
+        console.log('🎯 First problem:', firstProblem);
+        app.openChallenge(firstProblem, 'Array');
+    };
+    
+    // Also add quest node click test
+    window.testQuestNodeClick = () => {
+        console.log('🧪 Testing quest node click...');
+        const questNodes = document.querySelectorAll('.quest-node');
+        console.log('🎯 Found quest nodes:', questNodes.length);
+        if (questNodes.length > 0) {
+            console.log('🖱️ Clicking first quest node...');
+            questNodes[0].click();
+        } else {
+            console.log('❌ No quest nodes found');
+        }
+    };
+    
+    console.log('🧪 Test functions added to window: testProblemNavigation() and testQuestNodeClick()');
 });

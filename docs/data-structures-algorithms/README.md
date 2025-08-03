@@ -1,5 +1,29 @@
 # Data Structures & Algorithms: The Foundation 🏗️
 
+## 👋 New to Data Structures & Algorithms?
+
+**Don't let the fancy terms scare you!** DSA is just a way of organizing information and solving problems efficiently. Think of it like learning to organize your kitchen:
+
+- **Data Structures** = Different types of containers (cabinets, drawers, shelves)
+- **Algorithms** = Recipes for finding and using what you stored
+- **Practice Problems** = Cooking different dishes using your organized kitchen
+
+### Am I Ready for This Section?
+✅ **You're ready if you can:**
+- Write basic loops (for, while)
+- Create and use variables
+- Understand functions/methods
+- Use if/else statements
+
+❓ **Not sure?** Go to `docs/programming-fundamentals/` first!
+
+### How Long Will This Take?
+- **Complete beginner**: 6-12 weeks (30-60 min/day)
+- **Some programming experience**: 3-6 weeks (1 hour/day)
+- **Experienced programmer**: 1-3 weeks (review mode)
+
+---
+
 ## 🎯 Why DSA First?
 
 Think of programming like building a house:

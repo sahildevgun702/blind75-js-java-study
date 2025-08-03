@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem - CodeQuest Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="problem-page">
+    <!-- Header -->
+    <header class="problem-header">
+        <div class="container">
+            <div class="header-content">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Quest Map
+                </button>
+                
+                <div class="problem-title-section">
+                    <h1 id="problemTitle">Two Sum Challenge</h1>
+                    <div class="problem-meta">
+                        <div class="difficulty-badge" id="difficultyBadge">Easy</div>
+                        <div class="category-badge" id="categoryBadge">Array</div>
+                        <div class="xp-reward">+50 XP</div>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="action-btn secondary" onclick="getHint()">
+                        <i class="fas fa-lightbulb"></i>
+                        Hint
+                    </button>
+                    <button class="action-btn primary" onclick="runCode()">
+                        <i class="fas fa-play"></i>
+                        Run Code
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="problem-main">
+        <div class="container">
+            <div class="problem-layout">
+                <!-- Left Panel - Problem Description & Documentation -->
+                <div class="problem-left">
+                    <div class="problem-description" id="problemDescription">
+                        <!-- Problem description will be loaded here -->
+                    </div>
+                    
+                    <div class="documentation-section">
+                        <h3>
+                            <i class="fas fa-book"></i>
+                            Documentation & Examples
+                        </h3>
+                        
+                        <div class="language-tabs">
+                            <button class="tab-btn active" data-lang="javascript">
+                                <i class="fab fa-js-square"></i>
+                                JavaScript
+                            </button>
+                            <button class="tab-btn" data-lang="java">
+                                <i class="fab fa-java"></i>
+                                Java
+                            </button>
+                        </div>
+                        
+                        <div class="documentation-content" id="documentationContent">
+                            <!-- Documentation will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Code Editor & Results -->
+                <div class="problem-right">
+                    <div class="code-section">
+                        <div class="code-header">
+                            <div class="code-title">
+                                <i class="fas fa-code"></i>
+                                <span>Solution Editor</span>
+                            </div>
+                            <div class="language-selector">
+                                <select id="codeLangSelector" onchange="switchCodeLanguage()">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="java">Java</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="code-editor-container">
+                            <textarea id="codeInput" placeholder="Write your solution here..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="test-results" id="testResults">
+                        <h4>
+                            <i class="fas fa-flask"></i>
+                            Test Results
+                        </h4>
+                        <div class="results-content">
+                            <p class="no-results">Run your code to see test results</p>
+                        </div>
+                    </div>
+                    
+                    <div class="solution-actions">
+                        <button class="secondary-btn" onclick="showSolution()">
+                            <i class="fas fa-eye"></i>
+                            Show Solution
+                        </button>
+                        <button class="primary-btn" onclick="submitSolution()">
+                            <i class="fas fa-check"></i>
+                            Submit Solution
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="problem.js"></script>
+</body>
+</html>

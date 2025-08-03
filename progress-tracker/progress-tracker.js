@@ -1,16 +1,25 @@
 #!/usr/bin/env node
 
 /**
- * Blind 75 Progress Tracker
+ * 🎯 Blind 75 Progress Tracker
  * 
- * This utility helps track your progress through the Blind 75 problems
- * for both JavaScript and Java implementations.
+ * A beginner-friendly tool to track your coding interview preparation journey!
  * 
- * Usage:
- *   node progress-tracker.js mark <problem-id> <language> [completed]
- *   node progress-tracker.js stats
- *   node progress-tracker.js reset
- *   node progress-tracker.js export
+ * 🚀 Quick Start Examples:
+ *   node progress-tracker.js                    # Show help and getting started guide
+ *   node progress-tracker.js stats              # See your overall progress  
+ *   node progress-tracker.js list               # See all problems with status
+ *   node progress-tracker.js mark 1 js          # Mark problem #1 as completed in JavaScript
+ *   node progress-tracker.js mark 1 java        # Mark problem #1 as completed in Java
+ *   node progress-tracker.js unmark 1 js        # Unmark problem #1 in JavaScript
+ *   node progress-tracker.js next               # Get your next recommended problem
+ *   node progress-tracker.js setup              # Initial setup and goal setting
+ * 
+ * 🎓 Study Tips:
+ *   - Start with easy problems to build confidence
+ *   - Try to solve in both languages to strengthen understanding
+ *   - Focus on understanding patterns, not memorizing solutions
+ *   - Use the 'next' command to get personalized recommendations
  */
 
 const fs = require('fs');
@@ -18,6 +27,19 @@ const path = require('path');
 
 const PROGRESS_FILE = path.join(__dirname, 'progress-tracker.json');
 const README_FILE = path.join(__dirname, '..', 'README.md');
+
+// Console colors for better UX
+const colors = {
+    green: '\x1b[32m',
+    red: '\x1b[31m',
+    yellow: '\x1b[33m',
+    blue: '\x1b[34m',
+    cyan: '\x1b[36m',
+    magenta: '\x1b[35m',
+    reset: '\x1b[0m',
+    bold: '\x1b[1m',
+    dim: '\x1b[2m'
+};
 
 class ProgressTracker {
     constructor() {
@@ -29,7 +51,8 @@ class ProgressTracker {
             const data = fs.readFileSync(PROGRESS_FILE, 'utf8');
             this.progress = JSON.parse(data);
         } catch (error) {
-            console.error('Error loading progress file:', error.message);
+            console.error(`${colors.red}❌ Error loading progress file: ${error.message}${colors.reset}`);
+            console.log(`${colors.yellow}💡 Make sure you're in the correct directory with progress-tracker.json${colors.reset}`);
             process.exit(1);
         }
     }
@@ -38,9 +61,9 @@ class ProgressTracker {
         try {
             this.progress.metadata.lastUpdated = new Date().toISOString();
             fs.writeFileSync(PROGRESS_FILE, JSON.stringify(this.progress, null, 2));
-            console.log('✅ Progress saved successfully!');
+            console.log(`${colors.green}✅ Progress saved successfully!${colors.reset}`);
         } catch (error) {
-            console.error('Error saving progress:', error.message);
+            console.error(`${colors.red}❌ Error saving progress: ${error.message}${colors.reset}`);
         }
     }
 
@@ -299,6 +322,272 @@ class ProgressTracker {
         this.updateReadme();
     }
 
+    // 🎯 BEGINNER-FRIENDLY METHODS
+
+    showHelp() {
+        console.log(`${colors.bold}${colors.cyan}🎯 Blind 75 Progress Tracker - Your Study Companion${colors.reset}\n`);
+        
+        console.log(`${colors.bold}📚 Quick Start Guide:${colors.reset}`);
+        console.log(`${colors.green}  1. Set up your goals:${colors.reset}        node progress-tracker.js setup`);
+        console.log(`${colors.green}  2. See what to do next:${colors.reset}     node progress-tracker.js next`);
+        console.log(`${colors.green}  3. Mark problems complete:${colors.reset}  node progress-tracker.js mark 1 js`);
+        console.log(`${colors.green}  4. Check your progress:${colors.reset}     node progress-tracker.js stats\n`);
+        
+        console.log(`${colors.bold}🛠️ All Commands:${colors.reset}`);
+        console.log(`${colors.yellow}  Basic Commands:${colors.reset}`);
+        console.log(`    stats                    📊 Show your overall progress`);
+        console.log(`    list [category]          📝 List problems (optional: by category)`);
+        console.log(`    next                     🎯 Get your next recommended problem`);
+        console.log(`    setup                    ⚙️  Initial setup and goal setting\n`);
+        
+        console.log(`${colors.yellow}  Tracking Commands:${colors.reset}`);
+        console.log(`    mark <id> <lang>         ✅ Mark problem as completed`);
+        console.log(`    unmark <id> <lang>       ❌ Mark problem as incomplete`);
+        console.log(`    scan                     🔍 Auto-detect completed problems from files\n`);
+        
+        console.log(`${colors.yellow}  Advanced Commands:${colors.reset}`);
+        console.log(`    export                   📤 Export progress and update README`);
+        console.log(`    reset                    🔄 Reset all progress (with confirmation)\n`);
+        
+        console.log(`${colors.bold}💡 Examples:${colors.reset}`);
+        console.log(`${colors.dim}    node progress-tracker.js mark 1 js           # Mark Two Sum as completed in JavaScript`);
+        console.log(`    node progress-tracker.js mark 5 java         # Mark Maximum Subarray as completed in Java`);
+        console.log(`    node progress-tracker.js list Array          # Show all Array problems`);
+        console.log(`    node progress-tracker.js next                # Get personalized recommendation${colors.reset}\n`);
+        
+        console.log(`${colors.bold}🎓 Study Tips:${colors.reset}`);
+        console.log(`${colors.blue}  • Start with 'setup' to create your study plan`);
+        console.log(`  • Use 'next' to get problems matching your skill level`);
+        console.log(`  • Try solving in both languages to deepen understanding`);
+        console.log(`  • Focus on patterns and problem-solving approach, not memorization${colors.reset}\n`);
+    }
+
+    setupStudyPlan() {
+        console.log(`${colors.bold}${colors.cyan}🎯 Let's Set Up Your Study Plan!${colors.reset}\n`);
+        
+        // Interactive setup would go here - for now, show guidance
+        console.log(`${colors.bold}📝 Study Planning Guide:${colors.reset}\n`);
+        
+        console.log(`${colors.yellow}1. Choose Your Timeline:${colors.reset}`);
+        console.log(`   • 📅 4 weeks (intensive): 3-4 hours/day`);
+        console.log(`   • 📅 8 weeks (steady): 1-2 hours/day`);
+        console.log(`   • 📅 12+ weeks (gradual): 30-60 min/day\n`);
+        
+        console.log(`${colors.yellow}2. Pick Your Starting Point:${colors.reset}`);
+        console.log(`   • 🟢 Complete beginner: Start with docs/programming-fundamentals/`);
+        console.log(`   • 🟡 Some experience: Start with docs/data-structures-algorithms/`);
+        console.log(`   • 🟠 Ready for practice: Start with easy Array problems\n`);
+        
+        console.log(`${colors.yellow}3. Choose Your Language Focus:${colors.reset}`);
+        console.log(`   • 🚀 JavaScript: Great for web development interviews`);
+        console.log(`   • ☕ Java: Excellent for system design and enterprise roles`);
+        console.log(`   • 🎯 Both: Maximum learning and flexibility\n`);
+        
+        console.log(`${colors.green}✨ Ready to start? Use 'node progress-tracker.js next' for your first problem!${colors.reset}\n`);
+    }
+
+    getNextRecommendation() {
+        console.log(`${colors.bold}${colors.cyan}🎯 Your Next Recommended Problem${colors.reset}\n`);
+        
+        // Calculate user's current level
+        const jsCompleted = this.progress.stats.overall.javascript.completed;
+        const javaCompleted = this.progress.stats.overall.java.completed;
+        const totalCompleted = Math.max(jsCompleted, javaCompleted);
+        
+        // Get all problems and sort by difficulty and completion status
+        const allProblems = [];
+        for (const [category, data] of Object.entries(this.progress.categories)) {
+            data.problems.forEach(problem => {
+                allProblems.push({
+                    ...problem,
+                    category,
+                    isCompleted: problem.javascript || problem.java,
+                    needsJS: !problem.javascript,
+                    needsJava: !problem.java
+                });
+            });
+        }
+        
+        // Find the best next problem
+        let recommendation = null;
+        
+        // If beginner (0-5 completed), suggest easy problems
+        if (totalCompleted < 5) {
+            recommendation = allProblems.find(p => 
+                p.difficulty === 'Easy' && !p.isCompleted && 
+                (p.category === 'Array' || p.category === 'String')
+            );
+        }
+        // If intermediate (5-25 completed), suggest medium problems or easy ones they missed
+        else if (totalCompleted < 25) {
+            recommendation = allProblems.find(p => 
+                (p.difficulty === 'Easy' || p.difficulty === 'Medium') && !p.isCompleted
+            );
+        }
+        // If advanced, suggest any incomplete problem
+        else {
+            recommendation = allProblems.find(p => !p.isCompleted);
+        }
+        
+        if (!recommendation) {
+            // Check for second language practice
+            const needsSecondLang = allProblems.find(p => p.needsJS || p.needsJava);
+            if (needsSecondLang) {
+                const langNeeded = needsSecondLang.needsJS ? 'JavaScript' : 'Java';
+                console.log(`${colors.green}🎉 Great job! You've completed all problems in your primary language!${colors.reset}`);
+                console.log(`${colors.yellow}💡 Suggestion: Practice "${needsSecondLang.name}" in ${langNeeded} to strengthen your understanding.${colors.reset}\n`);
+                this.showProblemDetails(needsSecondLang);
+                return;
+            } else {
+                console.log(`${colors.green}🎉 CONGRATULATIONS! You've completed all 75 problems in both languages!${colors.reset}`);
+                console.log(`${colors.yellow}🚀 You're ready for technical interviews! Consider:${colors.reset}`);
+                console.log(`   • Mock interviews with friends or platforms`);
+                console.log(`   • System design study`);
+                console.log(`   • Company-specific problem practice\n`);
+                return;
+            }
+        }
+        
+        // Show the recommendation
+        this.showProblemDetails(recommendation);
+        
+        // Show why this was recommended
+        console.log(`${colors.bold}🤔 Why this problem?${colors.reset}`);
+        if (totalCompleted < 5) {
+            console.log(`   • Perfect for beginners - ${recommendation.difficulty} difficulty`);
+            console.log(`   • Teaches fundamental ${recommendation.category.toLowerCase()} concepts`);
+        } else if (totalCompleted < 25) {
+            console.log(`   • Good progression from your current level`);
+            console.log(`   • Covers important ${recommendation.category} patterns`);
+        } else {
+            console.log(`   • Filling gaps in your knowledge`);
+            console.log(`   • Advanced ${recommendation.category} problem`);
+        }
+        console.log(`   • Tags: ${recommendation.tags.join(', ')}\n`);
+        
+        console.log(`${colors.green}📝 To mark as completed: ${colors.bold}node progress-tracker.js mark ${recommendation.id} js${colors.reset}`);
+        console.log(`${colors.green}📝 To mark as completed: ${colors.bold}node progress-tracker.js mark ${recommendation.id} java${colors.reset}\n`);
+    }
+
+    showProblemDetails(problem) {
+        console.log(`${colors.bold}📋 Problem #${problem.id}: ${problem.name}${colors.reset}`);
+        console.log(`${colors.cyan}🏷️  Category: ${problem.category}${colors.reset}`);
+        console.log(`${colors.yellow}⚡ Difficulty: ${this.getDifficultyIcon(problem.difficulty)} ${problem.difficulty}${colors.reset}`);
+        
+        const jsStatus = problem.javascript ? `${colors.green}✅ Completed` : `${colors.red}❌ Not completed`;
+        const javaStatus = problem.java ? `${colors.green}✅ Completed` : `${colors.red}❌ Not completed`;
+        
+        console.log(`${colors.blue}🚀 JavaScript: ${jsStatus}${colors.reset}`);
+        console.log(`${colors.blue}☕ Java: ${javaStatus}${colors.reset}\n`);
+    }
+
+    getDifficultyIcon(difficulty) {
+        switch (difficulty) {
+            case 'Easy': return '🟢';
+            case 'Medium': return '🟡';  
+            case 'Hard': return '🔴';
+            default: return '⚪';
+        }
+    }
+
+    unmarkProblem(problemId, language) {
+        const langKey = language.toLowerCase().startsWith('j') ? 
+                       (language.toLowerCase() === 'js' || language.toLowerCase() === 'javascript' ? 'javascript' : 'java') : 
+                       language.toLowerCase();
+        
+        if (!['javascript', 'java'].includes(langKey)) {
+            console.log(`${colors.red}❌ Language must be 'javascript', 'js', or 'java'${colors.reset}`);
+            return;
+        }
+
+        const { problem, category } = this.findProblemById(problemId);
+        if (!problem) {
+            console.log(`${colors.red}❌ Problem with ID ${problemId} not found${colors.reset}`);
+            console.log(`${colors.yellow}💡 Use 'node progress-tracker.js list' to see all problem IDs${colors.reset}`);
+            return;
+        }
+
+        problem[langKey] = false;
+        problem.dateCompleted[langKey] = null;
+
+        this.updateStats();
+        
+        console.log(`${colors.yellow}🔄 Unmarked "${problem.name}" for ${langKey}${colors.reset}`);
+        console.log(`${colors.cyan}📊 Category: ${category}${colors.reset}`);
+        
+        this.saveProgress();
+    }
+
+    displayEnhancedStats() {
+        console.log(`${colors.bold}${colors.cyan}📊 Your Coding Interview Progress${colors.reset}\n`);
+        
+        const jsStats = this.progress.stats.overall.javascript;
+        const javaStats = this.progress.stats.overall.java;
+        
+        // Overall progress with visual bars
+        console.log(`${colors.bold}🎯 Overall Progress:${colors.reset}`);
+        console.log(`${colors.blue}🚀 JavaScript: ${jsStats.completed}/75 (${jsStats.percentage}%)${colors.reset}`);
+        console.log(`   ${this.createColorProgressBar(jsStats.percentage, 30)}`);
+        console.log(`${colors.blue}☕ Java: ${javaStats.completed}/75 (${javaStats.percentage}%)${colors.reset}`);
+        console.log(`   ${this.createColorProgressBar(javaStats.percentage, 30)}\n`);
+        
+        // Category breakdown
+        console.log(`${colors.bold}📚 Progress by Category:${colors.reset}`);
+        for (const [category, stats] of Object.entries(this.progress.stats.byCategory)) {
+            console.log(`\n${colors.bold}${category}:${colors.reset}`);
+            console.log(`  🚀 JS: ${stats.javascript.completed}/${stats.javascript.total} ${this.createColorProgressBar(stats.javascript.percentage, 20)}`);
+            console.log(`  ☕ Java: ${stats.java.completed}/${stats.java.total} ${this.createColorProgressBar(stats.java.percentage, 20)}`);
+        }
+        
+        // Study insights
+        const daysStudying = this.calculateStudyDays();
+        const completionRate = Math.round(((jsStats.completed + javaStats.completed) / 150) * 100);
+        
+        console.log(`\n${colors.bold}📈 Study Insights:${colors.reset}`);
+        console.log(`${colors.green}📅 Days studying: ${daysStudying}${colors.reset}`);
+        console.log(`${colors.green}🎯 Overall completion: ${completionRate}%${colors.reset}`);
+        
+        if (completionRate < 20) {
+            console.log(`${colors.yellow}💡 You're just getting started! Focus on easy Array and String problems.${colors.reset}`);
+        } else if (completionRate < 50) {
+            console.log(`${colors.yellow}💡 Great progress! Try mixing easy and medium difficulty problems.${colors.reset}`);
+        } else if (completionRate < 80) {
+            console.log(`${colors.yellow}💡 You're doing excellent! Focus on the harder problems and second language.${colors.reset}`);
+        } else {
+            console.log(`${colors.green}🎉 Amazing! You're nearly interview-ready! Practice mock interviews now.${colors.reset}`);
+        }
+        
+        console.log(`\n${colors.cyan}🎯 Next step: Use 'node progress-tracker.js next' for your next problem!${colors.reset}\n`);
+    }
+
+    createColorProgressBar(percentage, width = 20) {
+        const filled = Math.round((percentage / 100) * width);
+        const empty = width - filled;
+        
+        let bar = '';
+        for (let i = 0; i < filled; i++) {
+            bar += `${colors.green}█${colors.reset}`;
+        }
+        for (let i = 0; i < empty; i++) {
+            bar += `${colors.dim}░${colors.reset}`;
+        }
+        
+        return `${bar} ${percentage}%`;
+    }
+
+    calculateStudyDays() {
+        if (!this.progress.metadata.studyStartDate) {
+            return 'Not set';
+        }
+        
+        const startDate = new Date(this.progress.metadata.studyStartDate);
+        const today = new Date();
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        return diffDays;
+    }
+
     resetProgress() {
         console.log('⚠️  This will reset ALL progress. Are you sure? (This action cannot be undone)');
         console.log('To confirm, run: node progress-tracker.js reset-confirm');
@@ -484,11 +773,16 @@ function main() {
                 process.exit(1);
             }
             const problemId = args[1];
-            const language = args[2];
+            let language = args[2].toLowerCase();
+            
+            // Convert short forms to full names
+            if (language === 'js') language = 'javascript';
+            if (language === 'j') language = 'java';
+            
             const completed = args[3] === 'false' ? false : true;
             
             if (!['javascript', 'java'].includes(language)) {
-                console.error('Language must be "javascript" or "java"');
+                console.error(`${colors.red}Language must be "javascript", "js", "java", or "j"${colors.reset}`);
                 process.exit(1);
             }
             
@@ -496,7 +790,7 @@ function main() {
             break;
             
         case 'stats':
-            tracker.displayStats();
+            tracker.displayEnhancedStats();
             break;
             
         case 'list':
@@ -524,25 +818,33 @@ function main() {
             tracker.resetProgressConfirm();
             break;
             
+        case 'help':
+        case '--help':
+        case '-h':
+            tracker.showHelp();
+            break;
+            
+        case 'setup':
+            tracker.setupStudyPlan();
+            break;
+            
+        case 'next':
+            tracker.getNextRecommendation();
+            break;
+            
+        case 'unmark':
+            if (args.length < 3) {
+                console.error(`${colors.red}Usage: node progress-tracker.js unmark <problem-id> <javascript|java>${colors.reset}`);
+                process.exit(1);
+            }
+            tracker.unmarkProblem(args[1], args[2]);
+            break;
+            
         default:
-            console.log('📊 Blind 75 Progress Tracker');
-            console.log('');
-            console.log('Commands:');
-            console.log('  mark <id> <lang>     Mark problem as completed');
-            console.log('  stats                Show progress statistics');
-            console.log('  list [category]      List all problems by category');
-            console.log('  quick                Quick list of all problems with IDs');
-            console.log('  scan                 Auto-detect completed problems from files');
-            console.log('  export               Export progress to file & update README');
-            console.log('  reset                Reset all progress');
-            console.log('');
-            console.log('Examples:');
-            console.log('  node progress-tracker.js mark 1 javascript');
-            console.log('  node progress-tracker.js mark 1 java false');
-            console.log('  node progress-tracker.js stats');
-            console.log('  node progress-tracker.js quick');
-            console.log('  node progress-tracker.js scan');
-            console.log('  node progress-tracker.js list Array');
+            if (command) {
+                console.log(`${colors.red}❌ Unknown command: ${command}${colors.reset}\n`);
+            }
+            tracker.showHelp();
     }
 }
 

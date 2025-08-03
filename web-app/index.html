@@ -51,6 +51,12 @@
                     <i class="fas fa-play"></i>
                     Start Your Quest!
                 </button>
+                
+                <!-- Debug button -->
+                <button class="cta-button" onclick="debugQuestNodes()" style="margin-top: 10px; background: #ef4444 !important; display: block !important; position: relative !important; z-index: 9999 !important;">
+                    <i class="fas fa-bug"></i>
+                    🐛 DEBUG QUEST NODES
+                </button>
             </div>
             
             <div class="hero-character">
@@ -94,71 +100,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Problem Challenge Modal -->
-    <div class="modal" id="challengeModal">
-        <div class="modal-content challenge-modal">
-            <div class="modal-header">
-                <h3 id="challengeTitle">Two Sum Challenge</h3>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            
-            <div class="challenge-content">
-                <div class="challenge-info">
-                    <div class="difficulty-badge" id="difficultyBadge">Easy</div>
-                    <div class="category-badge" id="categoryBadge">Array</div>
-                    <div class="xp-reward">+50 XP</div>
-                </div>
-                
-                <div class="problem-description" id="problemDescription">
-                    <!-- Problem description will be loaded here -->
-                </div>
-                
-                <div class="language-tabs">
-                    <button class="tab-btn active" data-lang="javascript">
-                        <i class="fab fa-js-square"></i>
-                        JavaScript
-                    </button>
-                    <button class="tab-btn" data-lang="java">
-                        <i class="fab fa-java"></i>
-                        Java
-                    </button>
-                </div>
-                
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <span class="editor-title">Code Editor</span>
-                        <div class="editor-actions">
-                            <button class="action-btn" onclick="runCode()">
-                                <i class="fas fa-play"></i>
-                                Run Code
-                            </button>
-                            <button class="action-btn" onclick="getHint()">
-                                <i class="fas fa-lightbulb"></i>
-                                Hint
-                            </button>
-                        </div>
-                    </div>
-                    <textarea id="codeInput" placeholder="Write your solution here..."></textarea>
-                </div>
-                
-                <div class="test-results" id="testResults">
-                    <!-- Test results will appear here -->
-                </div>
-                
-                <div class="challenge-actions">
-                    <button class="secondary-btn" onclick="showSolution()">
-                        <i class="fas fa-eye"></i>
-                        Show Solution
-                    </button>
-                    <button class="primary-btn" onclick="submitSolution()">
-                        <i class="fas fa-check"></i>
-                        Submit Solution
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Progress Dashboard -->
     <section class="dashboard" id="dashboard">
