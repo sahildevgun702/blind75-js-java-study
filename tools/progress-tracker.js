@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PROGRESS_FILE = path.join(__dirname, 'progress-tracker.json');
-const README_FILE = path.join(__dirname, 'README.md');
+const README_FILE = path.join(__dirname, '..', 'README.md');
 
 class ProgressTracker {
     constructor() {
@@ -307,14 +307,15 @@ class ProgressTracker {
     scanProjectFiles() {
         console.log('🔍 Scanning project files for solved problems...');
         
-        const weekFolders = fs.readdirSync(__dirname).filter(name => 
-            name.startsWith('week-') && fs.statSync(path.join(__dirname, name)).isDirectory()
+        const rootDir = path.join(__dirname, '..');
+        const weekFolders = fs.readdirSync(rootDir).filter(name => 
+            name.startsWith('week-') && fs.statSync(path.join(rootDir, name)).isDirectory()
         );
         
         let foundSolutions = 0;
         
         weekFolders.forEach(weekFolder => {
-            const weekPath = path.join(__dirname, weekFolder);
+            const weekPath = path.join(rootDir, weekFolder);
             const dayFolders = fs.readdirSync(weekPath).filter(name => 
                 name.startsWith('day-') && fs.statSync(path.join(weekPath, name)).isDirectory()
             );

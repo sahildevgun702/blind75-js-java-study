@@ -58,3 +58,6 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Progress tracker exports (keep folder, ignore files)
+tools/exports/progress-export-*.json

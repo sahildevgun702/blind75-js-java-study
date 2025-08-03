@@ -16,18 +16,23 @@ The **Blind 75** is a curated list of 75 LeetCode problems that covers all the i
 
 ```
 blind75-js-java-study/
-├── Blind75Questions.js             # Enhanced with beginner thinking prompts
-├── Blind75Questions.java           # Enhanced with beginner thinking prompts
-├── programming-fundamentals/       # Complete beginner's programming course
-│   ├── README.md                  # Learning to think like a programmer
-│   └── 01-problem-analysis/       # Problem breakdown fundamentals
-├── week-01-fundamentals/          # Progressive skill-building exercises
-│   ├── day-01-tip-calculator/     # Enhanced with thinking challenges
-│   ├── day-02-basic-algorithms/   # Algorithm building blocks
-│   └── day-03-pattern-recognition/ # Common programming patterns
-├── algorithmic-thinking-challenges.md  # Pattern recognition practice
-├── debugging-and-testing-guide.md     # Essential debugging skills
-└── README.md                          # This file
+├── README.md                      # This file - project overview
+├── .gitignore                     # Git ignore rules
+│
+├── solutions/                     # 🎯 All problem solutions
+│   ├── Blind75Questions.js        # JavaScript implementations
+│   └── Blind75Questions.java      # Java implementations
+│
+├── docs/                         # 📚 Learning materials & documentation
+│   ├── data-structures-algorithms/ # Complete DSA learning path
+│   ├── programming-fundamentals/   # Beginner's programming course
+│   ├── algorithmic-thinking.md     # Pattern recognition practice
+│   └── debugging-guide.md          # Essential debugging skills
+│
+└── tools/                        # 🛠️ Progress tracking & utilities
+    ├── progress-tracker.js        # CLI progress tracking tool
+    ├── progress-tracker.json      # Progress data & problem definitions
+    └── exports/                   # Progress export snapshots
 ```
 
 ## 📚 Question Categories
@@ -290,11 +295,23 @@ java Blind75Questions
 ### How to Update Progress
 
 ```bash
+# Navigate to tools directory
+cd tools
+
 # Mark problem as completed
 node progress-tracker.js mark <problem-id> <javascript|java>
 
 # View detailed stats
 node progress-tracker.js stats
+
+# Quick reference of all problems
+node progress-tracker.js quick
+
+# Auto-scan for completed solutions
+node progress-tracker.js scan
+
+# Export progress & update README
+node progress-tracker.js export
 
 # Examples:
 node progress-tracker.js mark 1 javascript  # Mark Two Sum as completed in JS
