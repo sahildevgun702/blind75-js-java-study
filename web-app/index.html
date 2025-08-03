@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest Academy - Master Coding Interviews! 🚀</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="floating-icons">
+                <i class="fab fa-js-square"></i>
+                <i class="fab fa-java"></i>
+                <i class="fas fa-code"></i>
+                <i class="fas fa-trophy"></i>
+                <i class="fas fa-rocket"></i>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">CodeQuest Academy</span>
+                    <span class="sparkle">✨</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Master the <strong>Blind 75</strong> problems through an epic coding adventure!
+                    <br>Level up your skills in JavaScript & Java 🎯
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalProblems">75</div>
+                        <div class="stat-label">Epic Challenges</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="completedProblems">0</div>
+                        <div class="stat-label">Conquered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="currentLevel">1</div>
+                        <div class="stat-label">Current Level</div>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="startQuest()">
+                    <i class="fas fa-play"></i>
+                    Start Your Quest!
+                </button>
+            </div>
+            
+            <div class="hero-character">
+                <div class="character-avatar" id="playerAvatar">
+                    <div class="avatar-body">🧑‍💻</div>
+                    <div class="level-badge" id="levelBadge">LVL 1</div>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xpFill"></div>
+                        <span class="xp-text" id="xpText">0 / 100 XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path Section -->
+    <section class="learning-path" id="learningPath">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-map"></i>
+                Your Learning Adventure
+            </h2>
+            
+            <div class="path-selector">
+                <button class="path-btn active" data-path="beginner">
+                    <i class="fas fa-seedling"></i>
+                    Beginner Path
+                </button>
+                <button class="path-btn" data-path="intermediate">
+                    <i class="fas fa-mountain"></i>
+                    Warrior Path
+                </button>
+                <button class="path-btn" data-path="advanced">
+                    <i class="fas fa-crown"></i>
+                    Master Path
+                </button>
+            </div>
+
+            <div class="quest-map" id="questMap">
+                <!-- Quest nodes will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Challenge Modal -->
+    <div class="modal" id="challengeModal">
+        <div class="modal-content challenge-modal">
+            <div class="modal-header">
+                <h3 id="challengeTitle">Two Sum Challenge</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="challenge-content">
+                <div class="challenge-info">
+                    <div class="difficulty-badge" id="difficultyBadge">Easy</div>
+                    <div class="category-badge" id="categoryBadge">Array</div>
+                    <div class="xp-reward">+50 XP</div>
+                </div>
+                
+                <div class="problem-description" id="problemDescription">
+                    <!-- Problem description will be loaded here -->
+                </div>
+                
+                <div class="language-tabs">
+                    <button class="tab-btn active" data-lang="javascript">
+                        <i class="fab fa-js-square"></i>
+                        JavaScript
+                    </button>
+                    <button class="tab-btn" data-lang="java">
+                        <i class="fab fa-java"></i>
+                        Java
+                    </button>
+                </div>
+                
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span class="editor-title">Code Editor</span>
+                        <div class="editor-actions">
+                            <button class="action-btn" onclick="runCode()">
+                                <i class="fas fa-play"></i>
+                                Run Code
+                            </button>
+                            <button class="action-btn" onclick="getHint()">
+                                <i class="fas fa-lightbulb"></i>
+                                Hint
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="codeInput" placeholder="Write your solution here..."></textarea>
+                </div>
+                
+                <div class="test-results" id="testResults">
+                    <!-- Test results will appear here -->
+                </div>
+                
+                <div class="challenge-actions">
+                    <button class="secondary-btn" onclick="showSolution()">
+                        <i class="fas fa-eye"></i>
+                        Show Solution
+                    </button>
+                    <button class="primary-btn" onclick="submitSolution()">
+                        <i class="fas fa-check"></i>
+                        Submit Solution
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Dashboard -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Your Progress Dashboard
+            </h2>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-icon">🏆</div>
+                    <div class="card-content">
+                        <h3>Achievements</h3>
+                        <div class="achievement-list" id="achievementList">
+                            <!-- Achievements will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon">📊</div>
+                    <div class="card-content">
+                        <h3>Skills Progress</h3>
+                        <div class="skill-bars" id="skillBars">
+                            <!-- Skill progress bars will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon">🔥</div>
+                    <div class="card-content">
+                        <h3>Streak Counter</h3>
+                        <div class="streak-display">
+                            <span class="streak-number" id="streakNumber">0</span>
+                            <span class="streak-label">Day Streak</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-content">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-feed" id="activityFeed">
+                            <!-- Recent activities will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motivational Section -->
+    <section class="motivation" id="motivationSection">
+        <div class="container">
+            <div class="motivation-card">
+                <div class="motivation-icon">💪</div>
+                <h3 class="motivation-title" id="motivationTitle">You're doing amazing!</h3>
+                <p class="motivation-text" id="motivationText">
+                    Every expert was once a beginner. Keep pushing forward!
+                </p>
+                <button class="motivation-btn" onclick="getNewMotivation()">
+                    <i class="fas fa-heart"></i>
+                    Get Motivated
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CodeQuest Academy. Made with ❤️ for aspiring developers.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
